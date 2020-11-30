@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Dalgona",
+        "level": "easy",
+        "owner": "Nil",
+        "desc": " Sweet Coffee",
+        "id": "1001",
+        "ingredients": [
+            "Instant black coffeee",
+            "Sugar",
+            "Hot water",
+            "Condensed milk"
+        ],
+        "directions": [
+            "blend the coffee, hot water and sugar in ratio 1:1:1",
+            "whisk it until we got thick foam of coffeee",
+            "Pour milk to glass with ice and the mixture on top"
+        ],
+        "isFavorite": true
+    }
+]
