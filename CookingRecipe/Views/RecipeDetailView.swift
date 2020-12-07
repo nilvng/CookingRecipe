@@ -1,0 +1,131 @@
+//
+//  RecipeDetail.swift
+//  CookingRecipe
+//
+//  Created by Nil Nguyen on 11/23/20.
+//
+
+import SwiftUI
+
+struct RecipeDetailView: View {
+    
+    @State var startCooking = false
+    @ObservedObject var recipeViewModel : RecipeViewModel
+    
+    var body: some View {
+        NavigationView {
+            //List{
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack (alignment: .leading) {
+                    // OWNER
+                    Text("by \(recipeViewModel.recipe.owner)")
+                        .font(.body)
+                        .padding(.leading, 7)
+                    // meal's image
+                    Image("dalgona_coffee")
+                        .resizable()
+                        .frame(height: 300)
+                    // QLOOK
+                    RecipeQLook(recipe: recipeViewModel.recipe)
+                    // INGREDIENTS
+                    Text("Ingredients")
+                        .bold()
+                        .font(.title2)
+                        .padding(.horizontal, 7)
+                        .padding(.bottom, 5)
+                    IngredientsList(ingredients: recipeViewModel.recipe.ingredients)
+                    // DIRECTION
+                    Text("Directions")
+                        .bold()
+                        .font(.title2)
+                        .padding(.horizontal, 7)
+                        .padding(.bottom, 5)
+                    // Modal sbs
+                    Button(action: {
+                        self.startCooking.toggle()
+                    }){
+                        Text("Start cooking")
+                            .font(.subheadline)
+                        Image(systemName: "play")
+                            
+                    }
+                    .padding(.vertical,7)
+                    .padding(.horizontal, 120)
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(7)
+                    .frame(maxWidth: .infinity)
+                    .sheet(isPresented: $startCooking){
+                        DirectionsCarouselView(steps: recipeViewModel.recipe.instructions)
+                            
+                    }
+                    // list
+                    DirectionsList(steps: recipeViewModel.recipe.instructions)
+                    
+                    // REVIEW
+                    Spacer()
+                }
+            }
+            .navigationBarTitle(Text(recipeViewModel.recipe.title))
+            .navigationBarItems(trailing:
+                                    Button(action:{
+                                        //recipeViewModel.recipe.isFavorite.toggle()
+                                    }){
+//                                        if recipeViewModel.recipe.isFavorite{
+//                                            Image(systemName: "heart.fill")
+//                                                .imageScale(.large)
+//                                        } else{
+                                            Image(systemName: "heart")
+                                        //}
+                                    }
+            )
+         }
+    }
+}
+
+//struct RecipeDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecipeDetailView()    }
+//}
+
+struct RecipeQLook: View {
+    var recipe: Recipe
+    var body: some View {
+        HStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/,
+                spacing: 25){
+            HStack {
+                Image(systemName: "person.2")
+                Text("\(recipe.ingredients.count) Ingredients")
+            }
+            Divider()
+            HStack {
+                Image(systemName: "person.2")
+                Text("\(recipe.servings) Serve")
+            }
+            Divider()
+            HStack {
+                Image(systemName: "clock")
+                Text("20" + "m")
+            }
+        }
+        .padding()
+        .font(.callout)
+        .foregroundColor(Color.gray)
+    }
+}
+
+struct IngredientsList: View {
+    var ingredients: [String]
+    var body: some View {
+            ForEach(ingredients, id: \.self) { item in
+                HStack {
+                    Text(item)
+                    Spacer()
+                    Text("1 pack")
+                        .bold()
+                }
+                .padding(.horizontal, 10)
+                Divider()
+            }
+    }
+}
