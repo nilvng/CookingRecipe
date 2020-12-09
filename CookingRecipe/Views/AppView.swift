@@ -15,11 +15,11 @@ struct AppView: View {
             Image(systemName: "menubar.rectangle")
           Text("Home")
         })
-//        CategoriesView()
-//            .tabItem({
-//                Image(systemName: "face.smiling.fill")
-//              Text("Categories")
-//            })
+        CategoryView()
+            .tabItem({
+                Image(systemName: "face.smiling.fill")
+              Text("Categories")
+            })
 //        ProfileView()
 //            .tabItem ({
 //                Image(systemName: "person.2.circle")

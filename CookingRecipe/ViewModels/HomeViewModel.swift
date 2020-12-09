@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class HomeViewModel: ObservableObject {
+    
     @Published var recipeRepository = FirebaseRecipeRepository()
     @Published var recipeViewModels = [RecipeViewModel]()
     

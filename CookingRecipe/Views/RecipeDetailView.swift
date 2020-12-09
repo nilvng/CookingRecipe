@@ -91,9 +91,9 @@ struct RecipeDetailView: View {
 struct RecipeQLook: View {
     var recipe: Recipe
     var body: some View {
-        HStack (alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/,
+        HStack (alignment: .center,
                 spacing: 25){
-            HStack {
+            HStack (alignment: .center, spacing: 2) {
                 Image(systemName: "person.2")
                 Text("\(recipe.ingredients.count) Ingredients")
             }
@@ -112,6 +112,31 @@ struct RecipeQLook: View {
         .font(.callout)
         .foregroundColor(Color.gray)
     }
+}
+
+struct RecipeQuickView: View {
+  // MARK: - PROPERTIES
+  
+  var recipe: Recipe
+  
+  var body: some View {
+    HStack(alignment: .center, spacing: 12) {
+      HStack(alignment: .center, spacing: 2) {
+        Image(systemName: "person.2")
+        Text("Serves: \(recipe.servings)")
+      }
+      HStack(alignment: .center, spacing: 2) {
+        Image(systemName: "clock")
+        Text("Prep: \(recipe.duration)")
+      }
+      HStack(alignment: .center, spacing: 2) {
+        Image(systemName: "flame")
+        Text("Cooking: \(recipe.ingredients.count)")
+      }
+    }
+    .font(.footnote)
+    .foregroundColor(Color.gray)
+  }
 }
 
 struct IngredientsList: View {

@@ -45,7 +45,8 @@ struct RecipeCardView: View {
         
         // HEADLINE
         Text("By \(recipe.owner)")
-          .font(.system(.body, design: .serif))
+          //.font(.system(.body, design: .serif))
+            .font(.callout)
           .foregroundColor(Color.gray)
           .italic()
 
@@ -53,7 +54,7 @@ struct RecipeCardView: View {
 //        RecipeRatingView(recipe: recipe)
         
         // COOKING
-        RecipeCookingView(recipe: recipe)
+        RecipeQuickView(recipe: recipe)
 //        Button(action: {
 //                        self.showDetails.toggle()
 //                    }) {
@@ -66,19 +67,19 @@ struct RecipeCardView: View {
         
        
       }
-      .padding()
+//      .padding()
       .padding(.bottom, 12)
     }
     .background(Color.white)
-    .cornerRadius(12)
-    .shadow(color: Color.black, radius: 2, x: 0, y: 0)
+//    .cornerRadius(12)
+//    .shadow(color: Color.black, radius: 2, x: 0, y: 0)
   }
 }
 
 struct RecipeCardView_Previews: PreviewProvider {
   static var previews: some View {
     RecipeCardView(recipe: recipesData[0])
-      .previewLayout(.sizeThatFits)
+        .previewLayout(.device)
   }
 }
 

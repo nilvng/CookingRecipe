@@ -13,9 +13,14 @@ class BaseRecipeRepository {
     @Published var recipes = [Recipe]()
 }
 
+protocol RecipeRepository : BaseRecipeRepository {
+    //func searchRecipe(_ input: String)
+}
+
 class FirebaseRecipeRepository: BaseRecipeRepository {
-    
+        
     var db = Firestore.firestore()
+    
     func loadData(){
         db.collection("Recipe").addSnapshotListener { (querySnapshot, err) in
             if let querySnapshot = querySnapshot {
@@ -25,6 +30,7 @@ class FirebaseRecipeRepository: BaseRecipeRepository {
             }
         }
     }
+    
     
     func addTask(_ recipe: Recipe) {
         do {

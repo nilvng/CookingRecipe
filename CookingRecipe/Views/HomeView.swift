@@ -13,26 +13,13 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView{
-        ScrollView(.vertical, showsIndicators: true) {
-         // VStack(alignment: .center, spacing: 20) {
-        
-            VStack(alignment: .center, spacing: 20) {
-                ForEach(homeVM.recipeViewModels) { recipeVM in
-                NavigationLink(
-                    destination: RecipeDetailView(recipeViewModel: recipeVM)){
-                    RecipeCardView(recipe: recipeVM.recipe)
-              }
-            }
-            .frame(maxWidth: 640)
-            .padding(.horizontal)
-        
-          //}
-            }
-        }
-        }
+            VStack{
+            RecipeListView(recipeViewModels: homeVM.recipeViewModels)
+                }
+        .edgesIgnoringSafeArea(.top)
+    }
     }
 }
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
