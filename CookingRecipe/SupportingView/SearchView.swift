@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationBarView: View {
+struct SearchView: View {
     
     @ObservedObject var searchVM = SearchViewModel()
     
@@ -16,10 +16,38 @@ struct NavigationBarView: View {
     
     var body: some View {
         GeometryReader { geo in
+            
             VStack (spacing: 0){
+                HStack {
+                    HStack {
+                        Image("search")
+                            .resizable()
+                            .frame(width: 25, height: 25, alignment: .center)
+                            .foregroundColor(.black)
+                        
+                        TextField("Search...", text: self.$text, onCommit: {
+                            searchVM.localSearchFor(input: self.text)
+                        })
+                        Button(action: {
+                            self.text = ""
+                        }){
+                            Image(systemName: "xmark").foregroundColor(.black)
+                        }
+                    }
+                    .padding(8)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                }
+                .padding(.top, geo.safeAreaInsets.top + 35)
+                .padding(.horizontal)
+                .padding(.bottom, 10)
+                .background(Color.red)
                 
-                
+                if searchVM.recipeViewModels.count == 0{
+                    Text("No result")
+                } else {
                 RecipeListView(recipeViewModels: searchVM.recipeViewModels)
+                }
             }
 
         }
@@ -28,7 +56,7 @@ struct NavigationBarView: View {
 }
 
 struct CustomNavView : View {
-    var padValue : Int = 0
+    var padValue : CGFloat = 0
     var searchVM : SearchViewModel
     @State var showSearchField = false
     @State var text : String = ""
@@ -36,14 +64,14 @@ struct CustomNavView : View {
     var body : some View {
         HStack{
             
-//            if !self.showSearchField {
-//                Text("Cookie")
-//                    .fontWeight(.bold)
-//                    .font(.title)
-//                    .foregroundColor(.white)
-//            }
-//
-//            Spacer(minLength: 0)
+            if !self.showSearchField {
+                Text("Cookie")
+                    .fontWeight(.bold)
+                    .font(.title)
+                    .foregroundColor(.white)
+            }
+
+            Spacer(minLength: 0)
             
             HStack{
                 if self.showSearchField {
@@ -77,19 +105,19 @@ struct CustomNavView : View {
 
                 }
             }
-            //.padding(self.showSearchField ? 10 : 0)
+            .padding(self.showSearchField ? 10 : 0)
             .background(Color.white)
             .cornerRadius(20)
         }
-        .padding(.top, (CGFloat(self.padValue) + 30))
+        .padding(.top, self.padValue + 30)
         .padding(.horizontal)
         .padding(.bottom, 10)
         .background(Color.red)
     }
 }
 
-struct NavigationBarView_Previews: PreviewProvider {
+struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationBarView()
+        SearchView()
     }
 }
