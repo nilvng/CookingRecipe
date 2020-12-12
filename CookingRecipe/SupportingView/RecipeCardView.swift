@@ -8,43 +8,39 @@ import SwiftUI
 
 struct RecipeCardView: View {
   // MARK: - PROPERTIES
-    @State private var showDetails = false
-  var recipe: Recipe
-  var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
-  @State private var showModal: Bool = false
+    var recipeViewModel : RecipeViewModel
+    //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
   
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
       // CARD IMAGE
-        Image(recipe.media["photo"] ?? "dalgona_coffee")
-        .resizable()
-        .scaledToFit()
-        .overlay(
-          HStack {
-            Spacer()
-            VStack {
-              Image(systemName: "bookmark")
-                .font(Font.title.weight(.light))
-                .foregroundColor(Color.white)
-                .imageScale(.small)
-                .shadow(color: Color.black, radius: 2, x: 0, y: 0)
-                .padding(.trailing, 20)
-                .padding(.top, 22)
-              Spacer()
-            }
-          }
-        )
+        FirebaseImage(id: recipeViewModel.recipe.media["photo"]!)
+
       
       VStack(alignment: .leading, spacing: 12) {
         // TITLE
-        Text(recipe.title)
-          .font(.system(.title, design: .serif))
-          .fontWeight(.bold)
-            .foregroundColor(Color.blue)
-          .lineLimit(1)
+        HStack {
+            Text(recipeViewModel.recipe.title)
+              .font(.system(.title, design: .serif))
+                .foregroundColor(Color.blue)
+                .fontWeight(.bold)
+                .lineLimit(1)
+            Spacer()
+            
+            Button(action:{
+                    recipeViewModel.saveToFavorite()
+            }){
+//                                        if recipeViewModel.recipe.isFavorite{
+//                                            Image(systemName: "heart.fill")
+//                                        } else{
+                    Image(systemName: "heart")
+                //}
+            }
+        }
+            .imageScale(.large)
         
         // HEADLINE
-        Text("By \(recipe.owner)")
+        Text("By \(recipeViewModel.recipe.owner)")
           //.font(.system(.body, design: .serif))
             .font(.callout)
           .foregroundColor(Color.gray)
@@ -54,32 +50,21 @@ struct RecipeCardView: View {
 //        RecipeRatingView(recipe: recipe)
         
         // COOKING
-        RecipeQuickView(recipe: recipe)
-//        Button(action: {
-//                        self.showDetails.toggle()
-//                    }) {
-//            Image(systemName: "hand.thumbsup.fill")
-//                .foregroundColor(Color.yellow)
-//
-//                    }
-        
-        //
-        
-       
-      }
-//      .padding()
-      .padding(.bottom, 12)
+        RecipeQLook(recipe: recipeViewModel.recipe)
+}
+      .padding(.horizontal, 4)
+      .padding(.bottom, 6)
     }
     .background(Color.white)
 //    .cornerRadius(12)
-//    .shadow(color: Color.black, radius: 2, x: 0, y: 0)
   }
 }
 
-struct RecipeCardView_Previews: PreviewProvider {
-  static var previews: some View {
-    RecipeCardView(recipe: recipesData[0])
-        .previewLayout(.device)
-  }
-}
+
+//struct RecipeCardView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    RecipeCardView(recipe: recipesData[0])
+//        .previewLayout(.device)
+//  }
+//}
 

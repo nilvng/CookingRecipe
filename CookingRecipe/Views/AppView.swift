@@ -12,19 +12,19 @@ struct AppView: View {
     TabView {
       HomeView()
         .tabItem({
-            Image(systemName: "menubar.rectangle")
-          Text("Home")
+            Image(systemName: "house")
+          Text("Browse")
         })
         CategoryView()
             .tabItem({
-                Image(systemName: "face.smiling.fill")
+                Image(systemName: "globe")
               Text("Categories")
             })
-//        ProfileView()
-//            .tabItem ({
-//                Image(systemName: "person.2.circle")
-//              Text("Profile")
-//            })
+        UserView()
+            .tabItem ({
+                Image(systemName: "person")
+              Text("Library")
+            })
 
     }
     .edgesIgnoringSafeArea(.all)
@@ -35,7 +35,5 @@ struct AppView: View {
 struct AppView_Previews: PreviewProvider {
   static var previews: some View {
     AppView()
-      .previewDevice("iPhone 11 Pro")
-      .environment(\.colorScheme, .light)
   }
 }

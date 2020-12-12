@@ -27,9 +27,7 @@ struct HomeView: View {
                         Spacer(minLength: 0)
                         
                         NavigationLink (destination: SearchView()){
-                        Image("search")
-                            .resizable()
-                            .frame(width: 25, height: 25, alignment: .center)
+                        Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                             .padding(6)
                             .background(Color.white)

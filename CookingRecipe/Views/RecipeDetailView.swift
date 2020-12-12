@@ -6,25 +6,42 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct RecipeDetailView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @State var startCooking = false
     @ObservedObject var recipeViewModel : RecipeViewModel
     
     var body: some View {
-        NavigationView {
             //List{
             ScrollView(.vertical, showsIndicators: false) {
                 VStack (alignment: .leading) {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "arrow.backward")
+                    }.padding(.bottom, 5).padding(.trailing, 5)
+                    HStack {
+                        Text(recipeViewModel.recipe.title)
+                            .font(.title)
+                            .bold()
+                        Image(systemName: "heart")
+                    }
                     // OWNER
                     Text("by \(recipeViewModel.recipe.owner)")
                         .font(.body)
                         .padding(.leading, 7)
                     // meal's image
-                    Image("dalgona_coffee")
-                        .resizable()
-                        .frame(height: 300)
+                    if let videoURL = recipeViewModel.recipe.media["video"] {
+                    WebView(url: videoURL)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: 500, maxHeight: .infinity, alignment: .center)
+                    } else {
+                        FirebaseImage(id: recipeViewModel.recipe.media["photo"]!)
+
+
+                    }
                     // QLOOK
                     RecipeQLook(recipe: recipeViewModel.recipe)
                     // INGREDIENTS
@@ -57,28 +74,29 @@ struct RecipeDetailView: View {
                     .frame(maxWidth: .infinity)
                     .sheet(isPresented: $startCooking){
                         DirectionsCarouselView(steps: recipeViewModel.recipe.instructions)
-                            
+                        
                     }
                     // list
                     DirectionsList(steps: recipeViewModel.recipe.instructions)
                     
                     // REVIEW
-                    Spacer()
                 }
-            }
-            .navigationBarTitle(Text(recipeViewModel.recipe.title))
-            .navigationBarItems(trailing:
-                                    Button(action:{
+//            }
+//            .navigationTitle("")
+//            .navigationBarHidden(true)
+//            .navigationBarTitle(Text(recipeViewModel.recipe.title))
+//            .navigationBarItems(trailing:
+//                                    Button(action:{
                                         //recipeViewModel.recipe.isFavorite.toggle()
-                                    }){
+//                                    }){
 //                                        if recipeViewModel.recipe.isFavorite{
 //                                            Image(systemName: "heart.fill")
 //                                                .imageScale(.large)
 //                                        } else{
-                                            Image(systemName: "heart")
+//                                            Image(systemName: "heart")
                                         //}
-                                    }
-            )
+//                                    }
+//            )
          }
     }
 }
@@ -93,16 +111,18 @@ struct RecipeQLook: View {
     var body: some View {
         HStack (alignment: .center,
                 spacing: 25){
-            HStack (alignment: .center, spacing: 2) {
-                Image(systemName: "person.2")
-                Text("\(recipe.ingredients.count) Ingredients")
-            }
-            Divider()
             HStack {
-                Image(systemName: "person.2")
+                Image(systemName: "person")
                 Text("\(recipe.servings) Serve")
             }
-            Divider()
+            Spacer()
+            
+            HStack (alignment: .center, spacing: 2) {
+                Image(systemName: "person")
+                Text("\(recipe.ingredients.count) Ingredients")
+            }
+
+            Spacer()
             HStack {
                 Image(systemName: "clock")
                 Text("20" + "m")

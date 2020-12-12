@@ -15,7 +15,7 @@ struct DirectionsList: View {
                     HStack {
                         Image("dalgona_coffee")
                             .resizable()
-                            .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 100, height: 100, alignment: .center)
                         VStack (alignment: .leading, spacing: 5) {
                             Text("Step \(i + 1)")
                                 .font(.headline)

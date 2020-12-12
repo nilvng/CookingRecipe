@@ -20,11 +20,12 @@ struct SearchView: View {
             VStack (spacing: 0){
                 HStack {
                     HStack {
-                        Image("search")
-                            .resizable()
-                            .frame(width: 25, height: 25, alignment: .center)
+                        Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
-                        
+                            .padding(6)
+                            .background(Color.white)
+                            .cornerRadius(20)
+
                         TextField("Search...", text: self.$text, onCommit: {
                             searchVM.localSearchFor(input: self.text)
                         })
@@ -34,7 +35,7 @@ struct SearchView: View {
                             Image(systemName: "xmark").foregroundColor(.black)
                         }
                     }
-                    .padding(8)
+                    .padding(5)
                     .background(Color.white)
                     .cornerRadius(20)
                 }

@@ -11,11 +11,11 @@ struct RecipeListView: View {
     var recipeViewModels : [RecipeViewModel]
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 10) {
                 ForEach(recipeViewModels) { recipeVM in
                     NavigationLink(
                         destination: RecipeDetailView(recipeViewModel: recipeVM)){
-                        RecipeCardView(recipe: recipeVM.recipe)
+                        RecipeCardView(recipeViewModel: recipeVM)
                     }
             }
           }
