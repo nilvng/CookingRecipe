@@ -21,8 +21,6 @@ struct Recipe: Hashable, Identifiable, Codable {
     var ingredients: [String]
     var instructions: [String]
     
-    //var isFavorite: Bool
-
     enum CodingKeys: String ,CodingKey {
         case title, owner, duration, media, servings, categories,ingredients, instructions = "steps"
     }

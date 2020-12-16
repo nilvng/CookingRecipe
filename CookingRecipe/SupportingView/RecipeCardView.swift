@@ -8,14 +8,21 @@ import SwiftUI
 
 struct RecipeCardView: View {
   // MARK: - PROPERTIES
-    var recipeViewModel : RecipeViewModel
+    @ObservedObject var recipeViewModel : RecipeViewModel
     //var hapticImpact = UIImpactFeedbackGenerator(style: .heavy)
   
   var body: some View {
-    VStack(alignment: .leading, spacing: 0) {
+    VStack(alignment: .center, spacing: 0) {
       // CARD IMAGE
-        FirebaseImage(id: recipeViewModel.recipe.media["photo"]!)
-
+        Group {
+            if let uiimage = recipeViewModel.uiImage {
+                Image(uiImage: uiimage)
+                    .resizable()
+            } else {
+                Text("Loading...")
+            }
+        }
+        .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity, minHeight: 300, idealHeight: 400, maxHeight: .infinity, alignment: .center)
       
       VStack(alignment: .leading, spacing: 12) {
         // TITLE
@@ -27,17 +34,21 @@ struct RecipeCardView: View {
                 .lineLimit(1)
             Spacer()
             
-            Button(action:{
-                    recipeViewModel.saveToFavorite()
-            }){
-//                                        if recipeViewModel.recipe.isFavorite{
-//                                            Image(systemName: "heart.fill")
-//                                        } else{
+            Button(action: {
+                recipeViewModel.saveToFavorite()
+                
+            }) {
+                if recipeViewModel.isFavorite {
+                    Image(systemName: "heart.fill")
+                } else {
                     Image(systemName: "heart")
-                //}
+                }
             }
-        }
+            .foregroundColor(.pink)
             .imageScale(.large)
+
+
+        }
         
         // HEADLINE
         Text("By \(recipeViewModel.recipe.owner)")

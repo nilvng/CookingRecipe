@@ -67,7 +67,13 @@ struct RecipeGridView : View {
     var db = Firestore.firestore()
     var title : String
     @State var recipeInRequest = [Recipe]()
-    
+
+    var body: some View {
+        List(recipeInRequest) { recipe in
+            Text(recipe.title)
+        }.onAppear(perform: loadData)
+        .navigationTitle(Text(self.title))
+    }
     func loadData(){
         db.collection("Recipe").whereField("categories", arrayContains: title)
             .getDocuments() { (querySnapshot, err) in
@@ -80,11 +86,7 @@ struct RecipeGridView : View {
 
     }
     
-    var body: some View {
-        List(recipeInRequest) { recipe in
-            Text(recipe.title)
-        }.onAppear(perform: loadData)
-    }
+
 }
 
 struct CategoryView_Previews: PreviewProvider {

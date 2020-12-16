@@ -17,6 +17,7 @@ struct RecipeListView: View {
                         destination: RecipeDetailView(recipeViewModel: recipeVM)){
                         RecipeCardView(recipeViewModel: recipeVM)
                     }
+                    .foregroundColor(.black)
             }
           }
         }

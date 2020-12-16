@@ -14,20 +14,27 @@ let placeholder = UIImage(named: "shu")!
 
 struct FirebaseImage : View {
 
-    init(id: String) {
-        self.imageLoader = Loader(id)
-    }
-
-    @ObservedObject private var imageLoader : Loader
+    @ObservedObject private var imageLoader : FirebaseImageLoader
 
     var image: UIImage? {
         imageLoader.data.flatMap(UIImage.init)
     }
+    
+    init(id: String) {
+        self.imageLoader = FirebaseImageLoader(id)
+    }
+
 
     var body: some View {
-        Image(uiImage: image ?? placeholder)
-            .resizable()
-            .scaledToFit()
+        HStack(alignment: .center, spacing: nil){
+            if let image = image{
+                Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            } else {
+                Text("Loading...")
+            }
+        }
     }
 }
 

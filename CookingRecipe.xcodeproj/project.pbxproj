@@ -241,9 +241,9 @@
 				C879F66E257BC4EF0007C5B7 /* HomeView.swift */,
 				C80B67CC257F56490065317B /* SearchView.swift */,
 				C8648AA5256B91F1002EC8F2 /* RecipeDetailView.swift */,
+				C82B1254258354A800830E5E /* UserView.swift */,
 				C84972A22570A05400581BD9 /* DirectionsCarouselView.swift */,
 				C80B67DD257FB30A0065317B /* CategoryView.swift */,
-				C82B1254258354A800830E5E /* UserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

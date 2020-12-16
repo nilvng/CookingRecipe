@@ -27,20 +27,39 @@ struct RecipeDetailView: View {
                         Text(recipeViewModel.recipe.title)
                             .font(.title)
                             .bold()
-                        Image(systemName: "heart")
+                        Spacer()
+                        Button(action: {
+                            recipeViewModel.saveToFavorite()
+                            
+                        }) {
+                            if recipeViewModel.isFavorite {
+                                Image(systemName: "heart.fill")
+                            } else {
+                                Image(systemName: "heart")
+                            }
+                        }
+                        .foregroundColor(.pink)
+                        .imageScale(.large)
                     }
                     // OWNER
                     Text("by \(recipeViewModel.recipe.owner)")
                         .font(.body)
                         .padding(.leading, 7)
                     // meal's image
-                    if let videoURL = recipeViewModel.recipe.media["video"] {
-                    WebView(url: videoURL)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: 500, maxHeight: .infinity, alignment: .center)
+                    let videoURL = recipeViewModel.recipe.media["video"]
+                    if videoURL != nil && videoURL != ""{
+                            WebView(url: videoURL!)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: 500, maxHeight: .infinity, alignment: .center)
                     } else {
-                        FirebaseImage(id: recipeViewModel.recipe.media["photo"]!)
-
-
+                        Group {
+                            if let uiimage = recipeViewModel.uiImage {
+                                Image(uiImage: uiimage)
+                                    .resizable()
+                            } else {
+                                Text("Loading...")
+                            }
+                        }
+                        .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity, minHeight: 300, idealHeight: 400, maxHeight: .infinity, alignment: .center)
                     }
                     // QLOOK
                     RecipeQLook(recipe: recipeViewModel.recipe)
