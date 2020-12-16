@@ -18,7 +18,8 @@ protocol RecipeRepository : BaseRecipeRepository {
 }
 
 class FirebaseRecipeRepository: BaseRecipeRepository {
-        
+    
+    var recipePath : String = "Recipe"
     var db = Firestore.firestore()
     
     func loadData(){
@@ -31,13 +32,33 @@ class FirebaseRecipeRepository: BaseRecipeRepository {
         }
     }
     
-    
     func addTask(_ recipe: Recipe) {
         do {
-          let _ = try db.collection("Recipe").addDocument(from: recipe)
+          let _ = try db.collection(recipePath).addDocument(from: recipe)
         }
         catch {
           print("There was an error while trying to save a task \(error.localizedDescription).")
+        }
+      }
+    
+    func deleteTask(_ recipe: Recipe) {
+        if let recipeID = recipe.id {
+          db.collection(recipePath).document(recipeID).delete { (error) in // (1)
+            if let error = error {
+              print("Error removing document: \(error.localizedDescription)")
+            }
+          }
+        }
+    }
+    
+    func updateTask(_ recipe: Recipe) {
+        if let recipeID = recipe.id {
+            do {
+                try db.collection(recipePath).document(recipeID).setData(from: recipe)
+            }
+            catch {
+                print("There was an error while trying to save a task \(error.localizedDescription).")
+            }
         }
       }
     

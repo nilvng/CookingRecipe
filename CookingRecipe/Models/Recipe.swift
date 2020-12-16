@@ -28,7 +28,7 @@ struct Recipe: Hashable, Identifiable, Codable {
 }
 
 let recipesData = [
-    Recipe(title: "Dalgona", owner: "Nil", duration: 12, media: ["photo":"dalgona_coffee"], servings: 1, categories : ["quick n easy"], ingredients: [
+    Recipe(title: "Dalgona", owner: "Nil", duration: 12, media: ["photo":"meal media/dalgona.jpg", "video": "https://youtube.com/embed/fYX1BcgWMqw"], servings: 1, categories : ["quick n easy"], ingredients: [
         "Instant black coffeee",
         "Sugar",
         "Hot water",

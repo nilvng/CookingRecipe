@@ -10,8 +10,11 @@ import SwiftUI
 struct UserView: View {
     var body: some View {
         VStack {
-            Text("Favorites")
-                .font(.title)
+            Section {
+                Text("Favorites")
+                    .font(.title)
+                Text("Hello")
+            }
             
             Text("Created")
                 .font(.title)

@@ -22,29 +22,21 @@ struct RecipeDetailView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "arrow.backward")
-                    }.padding(.bottom, 5).padding(.trailing, 5)
-                    HStack {
-                        Text(recipeViewModel.recipe.title)
-                            .font(.title)
-                            .bold()
-                        Spacer()
-                        Button(action: {
-                            recipeViewModel.saveToFavorite()
-                            
-                        }) {
-                            if recipeViewModel.isFavorite {
-                                Image(systemName: "heart.fill")
-                            } else {
-                                Image(systemName: "heart")
-                            }
+                            .imageScale(.large)
+                    }.padding(.bottom, 5).padding(.horizontal, 10)
+                    Group {
+                        HStack {
+                            Text(recipeViewModel.recipe.title)
+                                .font(.title)
+                                .bold()
+                            Spacer()
+                            BookmarkBtnView(recipe: recipeViewModel.recipe)
                         }
-                        .foregroundColor(.pink)
-                        .imageScale(.large)
+                        // OWNER
+                        Text("by \(recipeViewModel.recipe.owner)")
+                            .font(.body)
                     }
-                    // OWNER
-                    Text("by \(recipeViewModel.recipe.owner)")
-                        .font(.body)
-                        .padding(.leading, 7)
+                    .padding(.horizontal, 10)
                     // meal's image
                     let videoURL = recipeViewModel.recipe.media["video"]
                     if videoURL != nil && videoURL != ""{
@@ -62,7 +54,7 @@ struct RecipeDetailView: View {
                         .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity, minHeight: 300, idealHeight: 400, maxHeight: .infinity, alignment: .center)
                     }
                     // QLOOK
-                    RecipeQLook(recipe: recipeViewModel.recipe)
+                    RecipeQInfo(recipe: recipeViewModel.recipe)
                     // INGREDIENTS
                     Text("Ingredients")
                         .bold()
@@ -91,91 +83,14 @@ struct RecipeDetailView: View {
                     .background(Color.blue)
                     .cornerRadius(7)
                     .frame(maxWidth: .infinity)
-                    .sheet(isPresented: $startCooking){
-                        DirectionsCarouselView(steps: recipeViewModel.recipe.instructions)
-                        
-                    }
-                    // list
-                    DirectionsList(steps: recipeViewModel.recipe.instructions)
-                    
-                    // REVIEW
                 }
-//            }
-//            .navigationTitle("")
-//            .navigationBarHidden(true)
-//            .navigationBarTitle(Text(recipeViewModel.recipe.title))
-//            .navigationBarItems(trailing:
-//                                    Button(action:{
-                                        //recipeViewModel.recipe.isFavorite.toggle()
-//                                    }){
-//                                        if recipeViewModel.recipe.isFavorite{
-//                                            Image(systemName: "heart.fill")
-//                                                .imageScale(.large)
-//                                        } else{
-//                                            Image(systemName: "heart")
-                                        //}
-//                                    }
-//            )
-         }
+            }
     }
 }
 
-//struct RecipeDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RecipeDetailView()    }
-//}
-
-struct RecipeQLook: View {
-    var recipe: Recipe
-    var body: some View {
-        HStack (alignment: .center,
-                spacing: 25){
-            HStack {
-                Image(systemName: "person")
-                Text("\(recipe.servings) Serve")
-            }
-            Spacer()
-            
-            HStack (alignment: .center, spacing: 2) {
-                Image(systemName: "person")
-                Text("\(recipe.ingredients.count) Ingredients")
-            }
-
-            Spacer()
-            HStack {
-                Image(systemName: "clock")
-                Text("20" + "m")
-            }
-        }
-        .padding()
-        .font(.callout)
-        .foregroundColor(Color.gray)
-    }
-}
-
-struct RecipeQuickView: View {
-  // MARK: - PROPERTIES
-  
-  var recipe: Recipe
-  
-  var body: some View {
-    HStack(alignment: .center, spacing: 12) {
-      HStack(alignment: .center, spacing: 2) {
-        Image(systemName: "person.2")
-        Text("Serves: \(recipe.servings)")
-      }
-      HStack(alignment: .center, spacing: 2) {
-        Image(systemName: "clock")
-        Text("Prep: \(recipe.duration)")
-      }
-      HStack(alignment: .center, spacing: 2) {
-        Image(systemName: "flame")
-        Text("Cooking: \(recipe.ingredients.count)")
-      }
-    }
-    .font(.footnote)
-    .foregroundColor(Color.gray)
-  }
+struct RecipeDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        RecipeDetailView(recipeViewModel: RecipeViewModel(recipe: recipesData[0]))    }
 }
 
 struct IngredientsList: View {
