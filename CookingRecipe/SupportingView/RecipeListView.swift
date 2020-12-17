@@ -18,6 +18,7 @@ struct RecipeListView: View {
                         RecipeCardView(recipeViewModel: recipeVM)
                     }
                     .foregroundColor(.black)
+                    .buttonStyle(FlatLinkStyle())
             }
           }
         }

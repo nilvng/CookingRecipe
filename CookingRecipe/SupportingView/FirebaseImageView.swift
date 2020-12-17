@@ -12,7 +12,7 @@ import SwiftUI
 
 let placeholder = UIImage(named: "shu")!
 
-struct FirebaseImage : View {
+struct FirebaseImageView : View {
 
     @ObservedObject private var imageLoader : FirebaseImageLoader
 
@@ -26,14 +26,12 @@ struct FirebaseImage : View {
 
 
     var body: some View {
-        HStack(alignment: .center, spacing: nil){
             if let image = image{
                 Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             } else {
                 Text("Loading...")
-            }
         }
     }
 }

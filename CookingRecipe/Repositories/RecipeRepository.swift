@@ -15,15 +15,19 @@ class BaseRecipeRepository {
 
 protocol RecipeRepository : BaseRecipeRepository {
     //func searchRecipe(_ input: String)
+    func addRecipe(_ recipe: Recipe)
+    func deleteRecipe(_ recipe: Recipe)
+    func updateRecipe(_ recipe: Recipe)
+    
 }
 
-class FirebaseRecipeRepository: BaseRecipeRepository {
+class FirebaseRecipeRepository: BaseRecipeRepository, RecipeRepository {
     
     var recipePath : String = "Recipe"
     var db = Firestore.firestore()
     
     func loadData(){
-        db.collection("Recipe").addSnapshotListener { (querySnapshot, err) in
+        db.collection(recipePath).addSnapshotListener { (querySnapshot, err) in
             if let querySnapshot = querySnapshot {
                 self.recipes = querySnapshot.documents.compactMap { document -> Recipe? in
                     try? document.data(as: Recipe.self)
@@ -32,7 +36,7 @@ class FirebaseRecipeRepository: BaseRecipeRepository {
         }
     }
     
-    func addTask(_ recipe: Recipe) {
+    func addRecipe(_ recipe: Recipe) {
         do {
           let _ = try db.collection(recipePath).addDocument(from: recipe)
         }
@@ -41,7 +45,7 @@ class FirebaseRecipeRepository: BaseRecipeRepository {
         }
       }
     
-    func deleteTask(_ recipe: Recipe) {
+    func deleteRecipe(_ recipe: Recipe) {
         if let recipeID = recipe.id {
           db.collection(recipePath).document(recipeID).delete { (error) in // (1)
             if let error = error {
@@ -51,7 +55,7 @@ class FirebaseRecipeRepository: BaseRecipeRepository {
         }
     }
     
-    func updateTask(_ recipe: Recipe) {
+    func updateRecipe(_ recipe: Recipe) {
         if let recipeID = recipe.id {
             do {
                 try db.collection(recipePath).document(recipeID).setData(from: recipe)

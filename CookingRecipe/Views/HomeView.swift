@@ -17,7 +17,6 @@ struct HomeView: View {
                 let top = proxy.safeAreaInsets.top
                 
                 VStack (alignment: .leading, spacing: 0){
-                //CustomNavView(padValue: top, searchVM: searchVM)
                     HStack {
                         Text("Cookie")
                             .fontWeight(.bold)

@@ -47,6 +47,7 @@ struct RecipeDetailView: View {
                             if let uiimage = recipeViewModel.uiImage {
                                 Image(uiImage: uiimage)
                                     .resizable()
+                                    .aspectRatio(contentMode: .fit)
                             } else {
                                 Text("Loading...")
                             }
@@ -54,7 +55,7 @@ struct RecipeDetailView: View {
                         .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity, minHeight: 300, idealHeight: 400, maxHeight: .infinity, alignment: .center)
                     }
                     // QLOOK
-                    RecipeQInfo(recipe: recipeViewModel.recipe)
+                    RecipeAttributeView(recipe: recipeViewModel.recipe)
                     // INGREDIENTS
                     Text("Ingredients")
                         .bold()
@@ -72,7 +73,7 @@ struct RecipeDetailView: View {
                     Button(action: {
                         self.startCooking.toggle()
                     }){
-                        Text("Start cooking")
+                        Text("Start Cooking")
                             .font(.subheadline)
                         Image(systemName: "play")
                             
@@ -83,6 +84,8 @@ struct RecipeDetailView: View {
                     .background(Color.blue)
                     .cornerRadius(7)
                     .frame(maxWidth: .infinity)
+                    
+                    DirectionsList(steps: recipeViewModel.recipe.instructions)
                 }
             }
     }

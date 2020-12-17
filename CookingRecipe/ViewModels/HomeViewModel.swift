@@ -11,7 +11,7 @@ import Disk
 
 class HomeViewModel: ObservableObject {
     
-    @Published var recipeRepository = FirebaseRecipeRepository()
+    @Published var recipeRepository : RecipeRepository = FirebaseRecipeRepository()
     @Published var recipeViewModels = [RecipeViewModel]()
 
     var favRecipe = [String]()
@@ -28,7 +28,7 @@ class HomeViewModel: ObservableObject {
         
         recipeRepository.$recipes.map{ recipes in
             recipes.map{ recipe in
-                if self.favRecipe.contains(recipe.id!){
+                if self.favRecipe.contains(recipe.id ?? "noid"){
                 let rVM = RecipeViewModel(recipe : recipe)
                     rVM.isFavorite = true
                     return rVM

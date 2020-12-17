@@ -5,10 +5,11 @@
 //  Created by Nil Nguyen on 11/24/20.
 //
 
-import SwiftUI
+import Foundation
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct Recipe: Hashable, Identifiable, Codable {
+struct Recipe: Codable, Identifiable {
     @DocumentID var id : String? = UUID().uuidString
     var title: String
     var owner: String
@@ -22,7 +23,7 @@ struct Recipe: Hashable, Identifiable, Codable {
     var instructions: [String]
     
     enum CodingKeys: String ,CodingKey {
-        case title, owner, duration, media, servings, categories,ingredients, instructions = "steps"
+        case id, title, owner, duration, media, servings, categories,ingredients, instructions = "steps"
     }
     
 }

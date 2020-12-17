@@ -40,14 +40,6 @@ struct DirectionsCarouselView: View {
             .animation(.easeOut)
             
         }
-        /*.background(LinearGradient(gradient: Gradient(colors: [Color("ColorYellowLight"), Color("ColorYellowMedium")]), startPoint: .top, endPoint: .bottom))
- */
-    }
-}
-
-struct DirectionsCarousel_Previews: PreviewProvider {
-    static var previews: some View {
-        DirectionsCarouselView(steps: recipesData[0].instructions)
     }
 }
 
@@ -79,3 +71,11 @@ struct StepCard: View {
         .tag(index)
     }
 }
+
+struct DirectionsCarousel_Previews: PreviewProvider {
+    static var previews: some View {
+        DirectionsCarouselView(steps: recipesData[0].instructions)
+    }
+}
+
+

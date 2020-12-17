@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User : Hashable, Identifiable, Codable {
+struct User : Identifiable, Codable {
     var id = UUID().uuidString
     var name : String
     var recently : [Recipe]

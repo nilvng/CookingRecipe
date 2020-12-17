@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeQInfo: View {
+struct RecipeAttributeView: View {
     var recipe: Recipe
     var body: some View {
         HStack (alignment: .center,
@@ -37,7 +37,7 @@ struct RecipeQInfo: View {
 
 struct RecipeQInfo_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeQInfo(recipe: recipesData[0])
+        RecipeAttributeView(recipe: recipesData[0])
     }
 }
 

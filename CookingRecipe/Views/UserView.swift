@@ -8,12 +8,24 @@
 import SwiftUI
 
 struct UserView: View {
+    var favoriteRecipe : SavedRecipeRepository = FirebaseSavedRecipeRepository()
     var body: some View {
-        VStack {
+        VStack (alignment: .leading, spacing: 10){
             Section {
                 Text("Favorites")
                     .font(.title)
-                Text("Hello")
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack (alignment: .top, spacing: 0){
+                        ForEach(favoriteRecipe.savedRecipes){ recipeP in
+                            VStack (alignment: .center, spacing: 10) {
+                                FirebaseImageView(id: recipeP.image ?? "")
+                                    .frame(width: 150, height: 150)
+                                Text(recipeP.title)
+
+                            }
+                        }
+                    }
+                }
             }
             
             Text("Created")

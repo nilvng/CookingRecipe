@@ -63,11 +63,3 @@ class BookmarkViewModel : ObservableObject{
     }
     
 }
-
-struct RecipePreviewInfo : Hashable, Codable {
-
-    var prefID : String
-    var title : String
-    var image : String?
-    
-}

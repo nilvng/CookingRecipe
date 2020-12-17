@@ -18,6 +18,8 @@ struct RecipeCardView: View {
             if let uiimage = recipeViewModel.uiImage {
                 Image(uiImage: uiimage)
                     .resizable()
+                    .aspectRatio(contentMode: .fit)
+                
             } else {
                 Text("Loading...")
             }
@@ -48,7 +50,7 @@ struct RecipeCardView: View {
 //        RecipeRatingView(recipe: recipe)
         
         // COOKING
-        RecipeQInfo(recipe: recipeViewModel.recipe)
+        RecipeAttributeView(recipe: recipeViewModel.recipe)
 }
       .padding(.horizontal, 10)
       .padding(.bottom, 6)
