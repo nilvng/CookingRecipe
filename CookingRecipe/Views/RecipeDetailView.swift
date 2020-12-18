@@ -102,9 +102,9 @@ struct IngredientsList: View {
             ForEach(ingredients, id: \.self) { item in
                 HStack {
                     Text(item)
-                    Spacer()
-                    Text("1 pack")
-                        .bold()
+//                    Spacer()
+//                    Text("1 pack")
+//                        .bold()
                 }
                 .padding(.horizontal, 10)
                 Divider()

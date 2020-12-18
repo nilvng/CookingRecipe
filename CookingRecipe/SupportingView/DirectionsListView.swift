@@ -13,9 +13,9 @@ struct DirectionsList: View {
             VStack(alignment: .leading) {
                 ForEach(steps.indices, id: \.self) { i in
                     HStack {
-                        Image("dalgona_coffee")
-                            .resizable()
-                            .frame(width: 100, height: 100, alignment: .center)
+//                        Image("dalgona_coffee")
+//                            .resizable()
+//                            .frame(width: 100, height: 100, alignment: .center)
                         VStack (alignment: .leading, spacing: 5) {
                             Text("Step \(i + 1)")
                                 .font(.headline)
