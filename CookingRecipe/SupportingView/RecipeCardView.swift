@@ -18,7 +18,7 @@ struct RecipeCardView: View {
             if let uiimage = recipeViewModel.uiImage {
                 Image(uiImage: uiimage)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                 
             } else {
                 Text("Loading...")
@@ -36,7 +36,8 @@ struct RecipeCardView: View {
                 .lineLimit(1)
             Spacer()
             
-            BookmarkBtnView(recipe: recipeViewModel.recipe)
+            BookmarkBtnView(bookmarkVM: BookmarkViewModel(recipe: recipeViewModel.recipe))
+            
         }
         
         // HEADLINE

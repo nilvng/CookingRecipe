@@ -7,31 +7,32 @@
 
 import Foundation
 import Disk
+import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class BaseSavedRecipeRepository {
-    @Published var savedRecipes = [RecipePreviewInfo]()
+class BaseBookmarkRepository {
+    @Published var bookmarks = [RecipePreviewInfo]()
 }
 
-protocol SavedRecipeRepository : BaseSavedRecipeRepository {
+protocol BookmarkRepository : BaseBookmarkRepository {
 
     func saveRecipe(_ recipe: RecipePreviewInfo)
-    func removeSavedRecipe(_ recipe: RecipePreviewInfo)
+    func removeBookmark(_ recipe: RecipePreviewInfo)
     
 }
 
-class FirebaseSavedRecipeRepository: BaseSavedRecipeRepository, SavedRecipeRepository {
+class FirebaseBookmarkRepository: BaseBookmarkRepository, BookmarkRepository, ObservableObject {
     
-    var savedRecipePath : String = "User/user1/bookmarks"
+    var bookmarkPath : String = "User/user1/bookmarks"
     var db = Firestore.firestore()
     
-    func loadData(){
-        db.collection(savedRecipePath)
+    private func loadData(){
+        db.collection(bookmarkPath)
             .order(by: "createdTime", descending: true)
             .addSnapshotListener { (querySnapshot, err) in
             if let querySnapshot = querySnapshot {
-                self.savedRecipes = querySnapshot.documents.compactMap { document -> RecipePreviewInfo? in
+                self.bookmarks = querySnapshot.documents.compactMap { document -> RecipePreviewInfo? in
                     try? document.data(as: RecipePreviewInfo.self)
                 }
             }
@@ -41,7 +42,7 @@ class FirebaseSavedRecipeRepository: BaseSavedRecipeRepository, SavedRecipeRepos
     func saveRecipe(_ recipe: RecipePreviewInfo) {
         if let docid = recipe.id {
             do {
-                let _ = try db.collection(savedRecipePath).document(docid).setData(from: recipe)
+                let _ = try db.collection(bookmarkPath).document(docid).setData(from: recipe)
             }
             catch {
                 print("There was an error while trying to save a task \(error.localizedDescription).")
@@ -49,9 +50,9 @@ class FirebaseSavedRecipeRepository: BaseSavedRecipeRepository, SavedRecipeRepos
         }
     }
     
-    func removeSavedRecipe(_ recipe: RecipePreviewInfo) {
+    func removeBookmark(_ recipe: RecipePreviewInfo) {
         if let docid = recipe.id {
-            db.collection(savedRecipePath).document(docid).delete { (error) in
+            db.collection(bookmarkPath).document(docid).delete { (error) in
                 if let error = error {
                     print("Error removing document: \(error.localizedDescription)")
                 }
@@ -66,31 +67,31 @@ class FirebaseSavedRecipeRepository: BaseSavedRecipeRepository, SavedRecipeRepos
     }
 }
 
-class LocalSavedRecipeRepository : BaseSavedRecipeRepository, SavedRecipeRepository {
-    var filePath : String = "savedRecipes.json"
+class LocalbookmarkRepository : BaseBookmarkRepository, BookmarkRepository {
+    var filePath : String = "bookmarks.json"
     
     func saveRecipe(_ recipe: RecipePreviewInfo){
-        self.savedRecipes.append(recipe)
+        self.bookmarks.append(recipe)
     }
     func loadData(){
         do {
-            self.savedRecipes = try Disk.retrieve(filePath, from: .caches, as: [RecipePreviewInfo].self)
+            self.bookmarks = try Disk.retrieve(filePath, from: .caches, as: [RecipePreviewInfo].self)
         } catch  {
             print("Cannot get this list")
              return
         }
     }
     
-    func removeSavedRecipe(_ recipe: RecipePreviewInfo){
+    func removeBookmark(_ recipe: RecipePreviewInfo){
         
-        if let i = savedRecipes.firstIndex(of: recipe){
-            savedRecipes.remove(at: i)
+        if let i = bookmarks.firstIndex(of: recipe){
+            bookmarks.remove(at: i)
             
         }
     }
     func writeData(){
         do {
-            try Disk.save(savedRecipes, to: .caches, as: filePath)
+            try Disk.save(bookmarks, to: .caches, as: filePath)
         } catch  {
             print("Cannot save to this list")
              return

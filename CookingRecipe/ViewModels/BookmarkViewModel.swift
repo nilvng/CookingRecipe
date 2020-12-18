@@ -6,60 +6,56 @@
 //
 
 import Foundation
-import Disk
 import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class BookmarkViewModel : ObservableObject{
     
+    //var bookmarkRepo : BookmarkRepository = FirebaseBookmarkRepository()
     var db = Firestore.firestore()
     var bookmarkPath : String = "User/user1/bookmarks"
-    @Published private var savedRecipes = [RecipePreviewInfo]()
     
-    init() {
-        loadLocalData()
+    var recipe : Recipe
+    var recipeP : RecipePreviewInfo {
+        RecipePreviewInfo(id: recipe.id!, title: recipe.title, image: recipe.media["photo"])
     }
+    @Published var isFavorite : Bool = false
     
-    func loadDataFromFirebase(){
-        db.collection(bookmarkPath).addSnapshotListener { (querySnapshot, err) in
-            if let querySnapshot = querySnapshot {
-                self.savedRecipes = querySnapshot.documents.compactMap { document -> RecipePreviewInfo? in
-                    try? document.data(as: RecipePreviewInfo.self)
-                }
+    init(recipe : Recipe) {
+        self.recipe = recipe
+        
+        let docRef = db.collection(bookmarkPath).document(recipe.id!)
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                self.isFavorite = true
             }
         }
     }
-
-    func toFavorite(recipe : RecipePreviewInfo){
-
-        if let i = savedRecipes.firstIndex(of: recipe){
-            savedRecipes.remove(at: i)
-        } else {
-            savedRecipes.append(recipe)
-        }
-        // write data somewhere....
-        writeDataLocally()
-    }
     
-    func loadLocalData(){
-        do {
-            self.savedRecipes = try Disk.retrieve("savedRecipes.json", from: .caches, as: [RecipePreviewInfo].self)
-        } catch  {
-            print("Cannot get this list")
-             return
-        }
-    }
-    
-    func writeDataLocally(){
-        
-        do {
-            try Disk.save(savedRecipes, to: .caches, as: "savedRecipes.json")
-        } catch  {
-            print("Cannot save to this list")
-             return
+    func saveRecipe(){
+        if let docid = recipe.id {
+            do {
+                let _ = try db.collection(bookmarkPath).document(docid).setData(from: recipeP)
+                self.isFavorite = true
+            }
+            catch {
+                print("There was an error while trying to save a task \(error.localizedDescription).")
+            }
         }
         
+    }
+    
+    func removeSave(){
+        if let docid = recipe.id {
+            db.collection(bookmarkPath).document(docid).delete { (error) in
+                if let error = error {
+                    print("Error removing document: \(error.localizedDescription)")
+                }
+                self.isFavorite = true
+            }
+        }
     }
     
 }

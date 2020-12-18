@@ -10,20 +10,13 @@ import Disk
 
 struct BookmarkBtnView: View {
     
-    var savedRecipeRepo : SavedRecipeRepository = FirebaseSavedRecipeRepository()
-    
-    var recipe : Recipe
-    var recipeP : RecipePreviewInfo {
-        RecipePreviewInfo(id: recipe.id!, title: recipe.title, image: recipe.media["photo"])
-    }
-    @State var isFavorite : Bool = false
+    @ObservedObject var bookmarkVM : BookmarkViewModel
     
     var body: some View {
         Button(action: {
-            self.isFavorite.toggle()
             self.toFavorite()
         }) {
-            if self.isFavorite {
+            if self.bookmarkVM.isFavorite {
                 Image(systemName: "heart.fill")
             } else {
                 Image(systemName: "heart")
@@ -34,16 +27,16 @@ struct BookmarkBtnView: View {
     }
     
     func toFavorite(){
-        if self.isFavorite {
-            savedRecipeRepo.saveRecipe(recipeP)
+        if self.bookmarkVM.isFavorite {
+            bookmarkVM.removeSave()
         } else {
-            savedRecipeRepo.removeSavedRecipe(recipeP)
+            bookmarkVM.saveRecipe()
         }
     }
 }
 
 struct BookmarkBtnView_Previews: PreviewProvider {
     static var previews: some View {
-        BookmarkBtnView(recipe: recipesData[0])
+        BookmarkBtnView(bookmarkVM: BookmarkViewModel(recipe: recipesData[0]))
     }
 }

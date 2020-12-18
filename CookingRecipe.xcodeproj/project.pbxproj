@@ -35,7 +35,7 @@
 		C8648AB1256B9412002EC8F2 /* DirectionsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8648AB0256B9412002EC8F2 /* DirectionsListView.swift */; };
 		C8648AC4256D35A9002EC8F2 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8648AC3256D35A9002EC8F2 /* Recipe.swift */; };
 		C8733D7A258A1EF4002B5AEB /* FlatLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8733D79258A1EF4002B5AEB /* FlatLinkStyle.swift */; };
-		C8733D82258A2115002B5AEB /* SavedRecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8733D81258A2115002B5AEB /* SavedRecipeRepository.swift */; };
+		C8733D82258A2115002B5AEB /* BookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8733D81258A2115002B5AEB /* BookmarkRepository.swift */; };
 		C879F66F257BC4EF0007C5B7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C879F66E257BC4EF0007C5B7 /* HomeView.swift */; };
 		C879F682257BD9460007C5B7 /* RecipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C879F681257BD9460007C5B7 /* RecipeCardView.swift */; };
 		C879F687257BD9A60007C5B7 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C879F686257BD9A60007C5B7 /* AppView.swift */; };
@@ -99,11 +99,10 @@
 		C8648AB0256B9412002EC8F2 /* DirectionsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsListView.swift; sourceTree = "<group>"; };
 		C8648AC3256D35A9002EC8F2 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		C8733D79258A1EF4002B5AEB /* FlatLinkStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatLinkStyle.swift; sourceTree = "<group>"; };
-		C8733D81258A2115002B5AEB /* SavedRecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipeRepository.swift; sourceTree = "<group>"; };
+		C8733D81258A2115002B5AEB /* BookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRepository.swift; sourceTree = "<group>"; };
 		C879F66E257BC4EF0007C5B7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C879F681257BD9460007C5B7 /* RecipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardView.swift; sourceTree = "<group>"; };
 		C879F686257BD9A60007C5B7 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
-		C879F68B257BD9AE0007C5B7 /* RecipeCookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecipeCookingView.swift; path = CookingRecipe/SupportingView/RecipeCookingView.swift; sourceTree = SOURCE_ROOT; };
 		C879F68C257BD9BA0007C5B7 /* RecipeRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRatingView.swift; sourceTree = "<group>"; };
 		C879F690257BDA890007C5B7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C879F695257BDAFA0007C5B7 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
@@ -232,7 +231,6 @@
 				C879F681257BD9460007C5B7 /* RecipeCardView.swift */,
 				C8648AB0256B9412002EC8F2 /* DirectionsListView.swift */,
 				C879F68C257BD9BA0007C5B7 /* RecipeRatingView.swift */,
-				C879F68B257BD9AE0007C5B7 /* RecipeCookingView.swift */,
 				C88BCFF32584D44D00D18530 /* FirebaseImageView.swift */,
 				7DD695882589E2CB00BFED53 /* BookmarkBtnView.swift */,
 				7DD695A02589F3A300BFED53 /* RecipeAttrributeView.swift */,
@@ -280,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				C879F69D257BDD530007C5B7 /* RecipeRepository.swift */,
-				C8733D81258A2115002B5AEB /* SavedRecipeRepository.swift */,
+				C8733D81258A2115002B5AEB /* BookmarkRepository.swift */,
 				7DD695A52589F5AD00BFED53 /* UserRepository.swift */,
 			);
 			path = Repositories;
@@ -558,7 +556,7 @@
 				7DD695962589EEDA00BFED53 /* FirebaseImageLoader.swift in Sources */,
 				C8648AB1256B9412002EC8F2 /* DirectionsListView.swift in Sources */,
 				C827066F2567F715001D5420 /* ContentView.swift in Sources */,
-				C8733D82258A2115002B5AEB /* SavedRecipeRepository.swift in Sources */,
+				C8733D82258A2115002B5AEB /* BookmarkRepository.swift in Sources */,
 				C879F69E257BDD530007C5B7 /* RecipeRepository.swift in Sources */,
 				C80B67CD257F56490065317B /* SearchView.swift in Sources */,
 				C8648AC4256D35A9002EC8F2 /* Recipe.swift in Sources */,

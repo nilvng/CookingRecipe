@@ -11,7 +11,7 @@ struct RecipeAttributeView: View {
     var recipe: Recipe
     var body: some View {
         HStack (alignment: .center,
-                spacing: 25){
+                spacing: 12){
             HStack (alignment: .center, spacing: 5){
                 Image(systemName: "person")
                 Text("\(recipe.servings) Servings")
@@ -19,7 +19,7 @@ struct RecipeAttributeView: View {
             Spacer(minLength: 0)
             
             HStack (alignment: .center, spacing: 5) {
-                Image(systemName: "person")
+                Image(systemName: "flame")
                 Text("\(recipe.ingredients.count) Ingredients")
             }
 
@@ -30,7 +30,7 @@ struct RecipeAttributeView: View {
             }
         }
         .padding()
-        .font(.callout)
+        .font(.footnote)
         .foregroundColor(Color.gray)
     }
 }
@@ -39,32 +39,5 @@ struct RecipeQInfo_Previews: PreviewProvider {
     static var previews: some View {
         RecipeAttributeView(recipe: recipesData[0])
     }
-}
-
-
-
-struct RecipeQuickView: View {
-  // MARK: - PROPERTIES
-  
-  var recipe: Recipe
-  
-  var body: some View {
-    HStack(alignment: .center, spacing: 12) {
-      HStack(alignment: .center, spacing: 2) {
-        Image(systemName: "person.2")
-        Text("Serves: \(recipe.servings)")
-      }
-      HStack(alignment: .center, spacing: 2) {
-        Image(systemName: "clock")
-        Text("Prep: \(recipe.duration)")
-      }
-      HStack(alignment: .center, spacing: 2) {
-        Image(systemName: "flame")
-        Text("Cooking: \(recipe.ingredients.count)")
-      }
-    }
-    .font(.footnote)
-    .foregroundColor(Color.gray)
-  }
 }
 

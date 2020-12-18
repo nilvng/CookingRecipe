@@ -30,7 +30,7 @@ struct RecipeDetailView: View {
                                 .font(.title)
                                 .bold()
                             Spacer()
-                            BookmarkBtnView(recipe: recipeViewModel.recipe)
+                            BookmarkBtnView(bookmarkVM: BookmarkViewModel(recipe: recipeViewModel.recipe))
                         }
                         // OWNER
                         Text("by \(recipeViewModel.recipe.owner)")
