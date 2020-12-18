@@ -15,13 +15,19 @@ import Firebase
 class RecipeViewModel: ObservableObject, Identifiable {
     @Published var recipe : Recipe
     @Published var isFavorite : Bool = false
+    
     @ObservedObject var imageLoader : FirebaseImageLoader
-
     @Published var uiImage : UIImage?
+    
+    var bookmarkVM : BookmarkViewModel {
+        BookmarkViewModel(recipe: self.recipe)
+    }
+    
     private var cancellable : AnyCancellable?
     
     init(recipe: Recipe) {
         self.recipe = recipe
+        // MARK: Get Thumbnail Image
         // App will crash if there is no photo string
         imageLoader =  FirebaseImageLoader(recipe.media["photo"]!)
 
@@ -34,6 +40,8 @@ class RecipeViewModel: ObservableObject, Identifiable {
         }
         .receive(on: DispatchQueue.main)
         .sink { [weak self] in self?.uiImage = $0 }
+        
     }
+    
 
 }
