@@ -15,6 +15,8 @@ pod "Firebase/Auth"
 pod "Firebase/Storage"
 pod "FirebaseFirestoreSwift"
 
+pod "GoogleSignIn"
+
   target 'CookingRecipeTests' do
     inherit! :search_paths
     # Pods for testing

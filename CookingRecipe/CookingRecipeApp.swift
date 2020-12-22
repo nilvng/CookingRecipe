@@ -7,11 +7,16 @@
 
 import SwiftUI
 import Firebase
+import Resolver
+
 @main
 struct CookingRecipeApp: App {
     
+    @Injected var authService : AuthenticationService
+    
     init() {
         FirebaseApp.configure()
+        authService.signIn()
     }
     
     var body: some Scene {

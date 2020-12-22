@@ -35,11 +35,12 @@ struct RecipeCardView: View {
                 .lineLimit(1)
             Spacer()
             
-            BookmarkBtnView(bookmarkVM: recipeViewModel.bookmarkVM)
+            BookmarkBtnView(recipeViewModel: recipeViewModel)
             
         }
         
-        // HEADLINE
+        // Owner
+        
         Text("By \(recipeViewModel.recipe.owner)")
           .font(.system(.body, design: .serif))
             .font(.callout)
@@ -49,14 +50,13 @@ struct RecipeCardView: View {
         // RATING
 //        RecipeRatingView(recipe: recipe)
         
-        // COOKING
+        // COOKING Attributes
         RecipeAttributeView(recipe: recipeViewModel.recipe)
 }
       .padding(.horizontal, 10)
       .padding(.bottom, 6)
     }
     .background(Color.white)
-//    .cornerRadius(12)
   }
 }
 

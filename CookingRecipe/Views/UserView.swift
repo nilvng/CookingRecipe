@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import Combine
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import Resolver
 
 struct UserView: View {
-    var favoriteRecipe : BookmarkRepository = FirebaseBookmarkRepository()
+    @Injected var bookmarkRepo : BookmarkRepository
+    @State var bookmarks = [RecipePreviewInfo]()
+
     var body: some View {
         VStack (alignment: .leading, spacing: 10){
             Section {
@@ -16,7 +22,7 @@ struct UserView: View {
                     .font(.title)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack (alignment: .top, spacing: 0){
-                        ForEach(favoriteRecipe.bookmarks){ recipeP in
+                        ForEach(self.bookmarks){ recipeP in
                             VStack (alignment: .center, spacing: 10) {
                                 FirebaseImageView(id: recipeP.image ?? "")
                                     .frame(width: 150, height: 150)
@@ -26,11 +32,13 @@ struct UserView: View {
                         }
                     }
                 }
+
             }
             
             Text("Created")
                 .font(.title)
         }
+        .onReceive(bookmarkRepo.$bookmarks){bookmarks = $0}
     }
 }
 

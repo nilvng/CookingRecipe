@@ -10,7 +10,6 @@
 		159F70E2B007E39F391F558E /* Pods_CookingRecipe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F01721B17B84A9DE6B4C7BB /* Pods_CookingRecipe.framework */; };
 		6312C487502C308F504499A0 /* Pods_CookingRecipe_CookingRecipeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9E542ABB66C8304D9CF134 /* Pods_CookingRecipe_CookingRecipeUITests.framework */; };
 		7DD695892589E2CB00BFED53 /* BookmarkBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695882589E2CB00BFED53 /* BookmarkBtnView.swift */; };
-		7DD695912589E5F400BFED53 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695902589E5F400BFED53 /* BookmarkViewModel.swift */; };
 		7DD695962589EEDA00BFED53 /* FirebaseImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695952589EEDA00BFED53 /* FirebaseImageLoader.swift */; };
 		7DD695A12589F3A300BFED53 /* RecipeAttrributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695A02589F3A300BFED53 /* RecipeAttrributeView.swift */; };
 		7DD695A62589F5AD00BFED53 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695A52589F5AD00BFED53 /* UserRepository.swift */; };
@@ -21,6 +20,7 @@
 		C80B67DE257FB30A0065317B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67DD257FB30A0065317B /* CategoryView.swift */; };
 		C80B67E3257FBB2C0065317B /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67E2257FBB2C0065317B /* CategoryViewModel.swift */; };
 		C80B67E8257FBE6D0065317B /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67E7257FBE6D0065317B /* RecipeListView.swift */; };
+		C816DD48258DDC6B00D3E939 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C816DD47258DDC6B00D3E939 /* AuthView.swift */; };
 		C827066D2567F715001D5420 /* CookingRecipeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827066C2567F715001D5420 /* CookingRecipeApp.swift */; };
 		C827066F2567F715001D5420 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827066E2567F715001D5420 /* ContentView.swift */; };
 		C82706712567F716001D5420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C82706702567F716001D5420 /* Assets.xcassets */; };
@@ -45,6 +45,8 @@
 		C879F69E257BDD530007C5B7 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C879F69D257BDD530007C5B7 /* RecipeRepository.swift */; };
 		C88BCFEC258472D700D18530 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BCFEB258472D700D18530 /* Browser.swift */; };
 		C88BCFF42584D44D00D18530 /* FirebaseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BCFF32584D44D00D18530 /* FirebaseImageView.swift */; };
+		C8B532D02590A673001F31DA /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B532CF2590A673001F31DA /* AuthenticationService.swift */; };
+		C8B532D82590A97D001F31DA /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B532D72590A97D001F31DA /* App+Injection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +70,6 @@
 		5031DD41347A11686E45A4DC /* Pods-CookingRecipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe.release.xcconfig"; path = "Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe.release.xcconfig"; sourceTree = "<group>"; };
 		59E4A2D6E6E6CC32279847D5 /* Pods-CookingRecipe-CookingRecipeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe-CookingRecipeUITests.release.xcconfig"; path = "Target Support Files/Pods-CookingRecipe-CookingRecipeUITests/Pods-CookingRecipe-CookingRecipeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7DD695882589E2CB00BFED53 /* BookmarkBtnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkBtnView.swift; sourceTree = "<group>"; };
-		7DD695902589E5F400BFED53 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		7DD695952589EEDA00BFED53 /* FirebaseImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageLoader.swift; sourceTree = "<group>"; };
 		7DD695A02589F3A300BFED53 /* RecipeAttrributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAttrributeView.swift; sourceTree = "<group>"; };
 		7DD695A52589F5AD00BFED53 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		C80B67DD257FB30A0065317B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		C80B67E2257FBB2C0065317B /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		C80B67E7257FBE6D0065317B /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		C816DD47258DDC6B00D3E939 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		C82706692567F715001D5420 /* CookingRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C827066C2567F715001D5420 /* CookingRecipeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingRecipeApp.swift; sourceTree = "<group>"; };
 		C827066E2567F715001D5420 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,8 @@
 		C879F69D257BDD530007C5B7 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		C88BCFEB258472D700D18530 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
 		C88BCFF32584D44D00D18530 /* FirebaseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageView.swift; sourceTree = "<group>"; };
+		C8B532CF2590A673001F31DA /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		C8B532D72590A97D001F31DA /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		C8ED38ED65E0F3C2E4EC222C /* Pods-CookingRecipe-CookingRecipeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe-CookingRecipeUITests.debug.xcconfig"; path = "Target Support Files/Pods-CookingRecipe-CookingRecipeUITests/Pods-CookingRecipe-CookingRecipeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB53FB1DADBCE9B583F9CAC1 /* Pods-CookingRecipeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipeTests.debug.xcconfig"; path = "Target Support Files/Pods-CookingRecipeTests/Pods-CookingRecipeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE597B596D6152746D0DD57A /* Pods-CookingRecipeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipeTests.release.xcconfig"; path = "Target Support Files/Pods-CookingRecipeTests/Pods-CookingRecipeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 		C82706602567F715001D5420 = {
 			isa = PBXGroup;
 			children = (
+				C8B532D72590A97D001F31DA /* App+Injection.swift */,
 				C827066B2567F715001D5420 /* CookingRecipe */,
 				C827067D2567F716001D5420 /* CookingRecipeTests */,
 				C82706882567F717001D5420 /* CookingRecipeUITests */,
@@ -184,6 +189,7 @@
 		C827066B2567F715001D5420 /* CookingRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				C8B532CF2590A673001F31DA /* AuthenticationService.swift */,
 				C8648AA4256B91DB002EC8F2 /* Models */,
 				C88BCFEA258472C200D18530 /* Helper */,
 				C879F67B257BD92B0007C5B7 /* Repositories */,
@@ -261,6 +267,7 @@
 				C82B1254258354A800830E5E /* UserView.swift */,
 				C84972A22570A05400581BD9 /* DirectionsCarouselView.swift */,
 				C80B67DD257FB30A0065317B /* CategoryView.swift */,
+				C816DD47258DDC6B00D3E939 /* AuthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -272,7 +279,6 @@
 				C879F695257BDAFA0007C5B7 /* RecipeViewModel.swift */,
 				C80B67D7257F6C8A0065317B /* SearchViewModel.swift */,
 				C80B67E2257FBB2C0065317B /* CategoryViewModel.swift */,
-				7DD695902589E5F400BFED53 /* BookmarkViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -319,6 +325,7 @@
 				C82706662567F715001D5420 /* Frameworks */,
 				C82706672567F715001D5420 /* Resources */,
 				312A1B3F1A226EAAF415BBCA /* [CP] Embed Pods Frameworks */,
+				B985B51F85D56ADE5058FF85 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -357,6 +364,7 @@
 				C82706822567F717001D5420 /* Frameworks */,
 				C82706832567F717001D5420 /* Resources */,
 				1D4160D053E4E18D93236F64 /* [CP] Embed Pods Frameworks */,
+				7141F625DA7FDEA6106FB062 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -516,6 +524,40 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7141F625DA7FDEA6106FB062 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookingRecipe-CookingRecipeUITests/Pods-CookingRecipe-CookingRecipeUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookingRecipe-CookingRecipeUITests/Pods-CookingRecipe-CookingRecipeUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CookingRecipe-CookingRecipeUITests/Pods-CookingRecipe-CookingRecipeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B985B51F85D56ADE5058FF85 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E4F19E1079A997E973B993D2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,8 +594,10 @@
 				C879F691257BDA890007C5B7 /* HomeViewModel.swift in Sources */,
 				C88BCFF42584D44D00D18530 /* FirebaseImageView.swift in Sources */,
 				7DD695892589E2CB00BFED53 /* BookmarkBtnView.swift in Sources */,
+				C8B532D02590A673001F31DA /* AuthenticationService.swift in Sources */,
 				C879F687257BD9A60007C5B7 /* AppView.swift in Sources */,
 				C879F66F257BC4EF0007C5B7 /* HomeView.swift in Sources */,
+				C8B532D82590A97D001F31DA /* App+Injection.swift in Sources */,
 				C82B1255258354A800830E5E /* UserView.swift in Sources */,
 				C8532578258B69B800BD8C51 /* RecipePreviewInfo.swift in Sources */,
 				7DD695962589EEDA00BFED53 /* FirebaseImageLoader.swift in Sources */,
@@ -562,10 +606,10 @@
 				C827066F2567F715001D5420 /* ContentView.swift in Sources */,
 				C8733D82258A2115002B5AEB /* BookmarkRepository.swift in Sources */,
 				C879F69E257BDD530007C5B7 /* RecipeRepository.swift in Sources */,
+				C816DD48258DDC6B00D3E939 /* AuthView.swift in Sources */,
 				C80B67CD257F56490065317B /* SearchView.swift in Sources */,
 				C8648AC4256D35A9002EC8F2 /* Recipe.swift in Sources */,
 				C80B67D8257F6C8A0065317B /* SearchViewModel.swift in Sources */,
-				7DD695912589E5F400BFED53 /* BookmarkViewModel.swift in Sources */,
 				C879F696257BDAFA0007C5B7 /* RecipeViewModel.swift in Sources */,
 				C879F682257BD9460007C5B7 /* RecipeCardView.swift in Sources */,
 				C84972A32570A05400581BD9 /* DirectionsCarouselView.swift in Sources */,

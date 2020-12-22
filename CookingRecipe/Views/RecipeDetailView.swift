@@ -29,15 +29,17 @@ struct RecipeDetailView: View {
                             Text(recipeViewModel.recipe.title)
                                 .font(.title)
                                 .bold()
+                            
                             Spacer()
-                            BookmarkBtnView(bookmarkVM: recipeViewModel.bookmarkVM)
+                            
+                            BookmarkBtnView(recipeViewModel: recipeViewModel)
                         }
                         // OWNER
                         Text("by \(recipeViewModel.recipe.owner)")
                             .font(.body)
                     }
                     .padding(.horizontal, 10)
-                    // meal's image
+                    // meal's media
                     let videoURL = recipeViewModel.recipe.media["video"]
                     if videoURL != nil && videoURL != ""{
                             WebView(url: videoURL!)
@@ -57,11 +59,6 @@ struct RecipeDetailView: View {
                     // QLOOK
                     RecipeAttributeView(recipe: recipeViewModel.recipe)
                     // INGREDIENTS
-                    Text("Ingredients")
-                        .bold()
-                        .font(.title2)
-                        .padding(.horizontal, 7)
-                        .padding(.bottom, 5)
                     IngredientsList(ingredients: recipeViewModel.recipe.ingredients)
                     // DIRECTION
                     Text("Directions")
@@ -99,6 +96,12 @@ struct RecipeDetail_Previews: PreviewProvider {
 struct IngredientsList: View {
     var ingredients: [String]
     var body: some View {
+        Text("Ingredients")
+            .bold()
+            .font(.title2)
+            .padding(.horizontal, 7)
+            .padding(.bottom, 5)
+
             ForEach(ingredients, id: \.self) { item in
                 HStack {
                     Text(item)

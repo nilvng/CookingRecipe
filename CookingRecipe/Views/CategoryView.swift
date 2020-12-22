@@ -65,7 +65,12 @@ struct RecipeByCateView : View {
 
     var body: some View {
         RecipeListView(recipeViewModels: recipeInRequest)
-        .onAppear(perform: loadData)
+            .onAppear(perform:
+                        {DispatchQueue.main.async {
+                            loadData()
+                            }
+                        }
+        )
         .navigationTitle(Text(self.title))
     }
     func loadData(){

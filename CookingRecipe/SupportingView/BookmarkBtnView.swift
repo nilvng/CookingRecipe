@@ -6,37 +6,40 @@
 //
 
 import SwiftUI
-import Disk
+import Resolver
 
 struct BookmarkBtnView: View {
-    
-    @ObservedObject var bookmarkVM : BookmarkViewModel
-    
+    @Injected var bookmarkRepo : BookmarkRepository
+    @ObservedObject var recipeViewModel : RecipeViewModel
+    @State var isFavorite : Bool = false
     var body: some View {
-        Button(action: {
-            self.toFavorite()
-        }) {
-            if self.bookmarkVM.isFavorite {
-                Image(systemName: "heart.fill")
-            } else {
-                Image(systemName: "heart")
+        VStack {
+            Button(action: {
+                recipeViewModel.toFavorite()
+            }) {
+                if recipeViewModel.isFavorite {
+                    Image(systemName: "heart.fill")
+                } else {
+                    Image(systemName: "heart")
+                }
             }
+            .foregroundColor(.pink)
+            .imageScale(.large)
+            Text("\(recipeViewModel.isFavorite ? "yay" : "nay")")
+
         }
-        .foregroundColor(.pink)
-        .imageScale(.large)
-    }
-    
-    func toFavorite(){
-        if self.bookmarkVM.isFavorite {
-            bookmarkVM.removeSave()
-        } else {
-            bookmarkVM.saveRecipe()
-        }
+//        .onReceive(bookmarkRepo.$bookmarks){ bookmarks in
+//            if bookmarks.firstIndex(of: recipeViewModel.recipeP) != nil {
+//                self.isFavorite = true
+//            }
+//            isFavorite = bookmarkRepo.loadFavState(recipeId: recipeViewModel.recipe.id!)
+//        }
+//        .onAppear() {recipeViewModel.getFavState()}
     }
 }
 
 struct BookmarkBtnView_Previews: PreviewProvider {
     static var previews: some View {
-        BookmarkBtnView(bookmarkVM: BookmarkViewModel(recipe: recipesData[0]))
+        BookmarkBtnView(recipeViewModel: RecipeViewModel(recipe: recipesData[0]))
     }
 }

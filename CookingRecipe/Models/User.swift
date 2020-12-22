@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct User : Identifiable, Codable {
-    var id = UUID().uuidString
-    var name : String
-    var recently : [Recipe]
-    var bookmarks : [String]
-    var created : [String]
-}
+//struct User : Identifiable, Codable {
+//    var id = UUID().uuidString
+//    var name : String
+//    var recently : [Recipe]
+//    var bookmarks : [String]
+//    var created : [String]
+//}
