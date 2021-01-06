@@ -9,7 +9,6 @@ import SwiftUI
 import Resolver
 
 struct BookmarkBtnView: View {
-    @Injected var bookmarkRepo : BookmarkRepository
     @ObservedObject var recipeViewModel : RecipeViewModel
     @State var isFavorite : Bool = false
     var body: some View {

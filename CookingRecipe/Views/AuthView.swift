@@ -7,36 +7,41 @@
 
 import SwiftUI
 import Firebase
+import Resolver
 import GoogleSignIn
 struct AuthView: View {
-    @State
-    private var signedIn = false
-    @State
-    private var username: String = ""
-    @State
-    private var email: String = ""
-    @State
-    private var uid: String = ""
+    @Injected var authService : AuthenticationService
+    @State private var signedIn = false
+    @State private var email : String = ""
     var body: some View {
-        ZStack {
-            Color.white
-            if signedIn {
-                VStack(spacing: 4) {
-                    Text("Username: \(username)")
-                        .foregroundColor(.black)
-                    Text("Email: \(email)")
-                        .foregroundColor(.black)
-                    Text("UID: \(uid)")
-                    AppView()
-                    GoogleLogout(signedIn: $signedIn)
-                        .frame(width: 200, height: 30, alignment: .center)
-
+        //ZStack {
+        VStack(spacing: 4) {
+            Text("Name : \(authService.user?.displayName ?? "")")
+            Text("Email: \(self.email)")
+                .foregroundColor(.black)
+            Text("UID: \(authService.user?.uid ?? "null")")
+            AppView()
+            //if signedIn {
+            HStack{
+                Button(action: {
+                    do {
+                        try Auth.auth().signOut()
+                        self.signedIn = false
+                    } catch let signOutError as NSError {
+                        print ("Error signing out: %@", signOutError)
+                    }
+                }){
+                    Text("Log Out")
                 }
-            } else {
-                GoogleLogin(signedIn: $signedIn, username: $username, email: $email, uid: $uid)
+           // } else {
+                GoogleLogin(signedIn: $signedIn)
                     .frame(width: 200, height: 30, alignment: .center)
             }
-        }.edgesIgnoringSafeArea(.all)
+        }
+        .edgesIgnoringSafeArea(.all)
+        .onReceive(authService.$user){ user in
+            self.email = user?.email ?? ""
+        }
     }
 }
 
@@ -45,103 +50,64 @@ struct AuthtView_Previews: PreviewProvider {
         AuthView()
     }
 }
-struct GoogleLogout: UIViewRepresentable {
-    @Binding
-    var signedIn: Bool
-
-    func makeUIView(context: Context) -> UIView {
-        GIDSignIn.sharedInstance().delegate = context.coordinator
-
-        let button = UIButton(frame: .zero)
-        button.setTitle("Logout", for: .normal)
-        button.backgroundColor = UIColor.red
-        button.addTarget(context.coordinator, action: #selector(Coordinator.onLogout), for: .touchUpInside)
-        return button
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, GIDSignInDelegate {
-        private let parent: GoogleLogout
-
-        init(_ parent: GoogleLogout) {
-            self.parent = parent
-        }
-
-        @objc
-        func onLogout(button: UIButton) {
-            GIDSignIn.sharedInstance()?.disconnect()
-        }
-
-        func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser?, withError error: Error?) {
-        }
-
-        func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-            parent.signedIn = false
-        }
-    }
-}
-
 
 struct GoogleLogin: UIViewRepresentable {
     @Binding
     var signedIn: Bool
-    @Binding
-    var username: String
-    @Binding
-    var email: String
-    @Binding
-    var uid: String
-
+    
     func makeUIView(context: Context) -> UIView {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.last?.rootViewController
+        GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.first?.rootViewController
         GIDSignIn.sharedInstance().delegate = context.coordinator
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-
+        //GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        
         return GIDSignInButton()
     }
-
+    
     func updateUIView(_ uiView: UIView, context: Context) {
         
     }
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-
+    
     class Coordinator: NSObject, GIDSignInDelegate {
         private let parent: GoogleLogin
-
+        
         init(_ parent: GoogleLogin) {
             self.parent = parent
         }
-
+        
         func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser?, withError error: Error?) {
             guard let authentication = user?.authentication else { return }
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                            accessToken: authentication.accessToken)
-
-            Auth.auth().currentUser?.link(with: credential) { (authResult, error) in
-                self.parent.signedIn = true
-                if let username = authResult?.user.displayName {
-                    self.parent.username = username
+            let  currentUser = Auth.auth().currentUser
+            print("username in google: \(user?.profile.name)")
+            if currentUser != nil && currentUser?.isAnonymous == false {
+                print("about to link...")
+                currentUser?.link(with: credential) { (authResult, error) in
+                    self.parent.signedIn = true
+                    if let error = error {
+                        print("error in linking auth \(error.localizedDescription)")
+                    }
                 }
-                if let email = authResult?.user.email {
-                    self.parent.email = email
-                }
-                if let uid = authResult?.user.uid {
-                    self.parent.uid = uid
+            } else {
+                Auth.auth().signIn(with: credential) { (authResult, error) in
+                    self.parent.signedIn = true
+                    if let error = error {
+                        print("error in linking auth \(error.localizedDescription)")
+                    }
                 }
             }
-        }
-
-        func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+            changeRequest?.displayName = user?.profile.name
+            changeRequest?.commitChanges { (error) in
+              // ...
+            }
+            func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+            }
         }
     }
 }

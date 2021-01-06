@@ -12,7 +12,7 @@ import Resolver
 @main
 struct CookingRecipeApp: App {
     
-    @Injected var authService : AuthenticationService
+    @LazyInjected var authService : AuthenticationService
     
     init() {
         FirebaseApp.configure()
