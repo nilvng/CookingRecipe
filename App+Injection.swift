@@ -13,6 +13,7 @@ extension Resolver : ResolverRegistering {
         register { AuthenticationService() }.scope(application)
         register { FirebaseRecipeRepository() as RecipeRepository}.scope(application)
         register { FirebaseBookmarkRepository() as BookmarkRepository}.scope(application)
+        
 
     }
 }

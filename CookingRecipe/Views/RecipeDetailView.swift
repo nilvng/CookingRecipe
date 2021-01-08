@@ -13,7 +13,10 @@ struct RecipeDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var startCooking = false
     @ObservedObject var recipeViewModel : RecipeViewModel
-    
+    @State var viewReview: Bool = false
+    @State var createReview = false
+    @State var editReview = false
+    @State var view1Review: Bool = false
     var body: some View {
             //List{
             ScrollView(.vertical, showsIndicators: false) {
@@ -83,8 +86,48 @@ struct RecipeDetailView: View {
                     .frame(maxWidth: .infinity)
                     
                     DirectionsList(steps: recipeViewModel.recipe.instructions)
+                    Group {
+                        HStack {
+                            Text("Reviews")
+                                .bold()
+                                .font(.title2)
+                            Spacer()
+                            Button(action: { self.viewReview.toggle() }) {
+                                Image(systemName: viewReview ? "icloud" : "icloud.fill")
+                            }
+                            Button(action: { self.createReview.toggle() }) {
+                                Image(systemName: createReview ? "bolt.slash.circle" : "plus.circle")
+                            }
+                            Button(action: { self.editReview.toggle()}) {
+                                Image(systemName: editReview ? "pencil" : "pencil.circle")
+                            }
+                            // .disabled(!recipeViewModel.existReview())
+                            Button(action: { self.view1Review.toggle() }) {
+                                Image(systemName: view1Review ? "icloud" : "icloud.fill")
+                            }
+                        }
+                        if createReview {
+                            CreateReview(exist: recipeViewModel.existReview())
+                        }
+                        else if editReview {
+                            EditOneReview(exist: recipeViewModel.existReview())
+                        }
+                        else if view1Review{
+                            OneReviewView(exist: recipeViewModel.existReview())
+                        }
+                        
+                            else {
+                            if viewReview {
+                                ReviewView()
+                            }
+                        }
+                    }
                 }
             }
+        
+            .onAppear(perform: {
+                ReviewRepository.shared.recipeId = recipeViewModel.recipe.id
+            })
     }
 }
 

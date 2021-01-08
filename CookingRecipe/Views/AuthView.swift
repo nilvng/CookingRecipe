@@ -8,7 +8,12 @@
 import SwiftUI
 import Firebase
 import GoogleSignIn
+import Resolver
+import Combine
 struct AuthView: View {
+    @AppStorage("userid") public static var userid = ""
+    @AppStorage("emails") public static var emails = ""
+    @AppStorage("userNAME") public static var userNAME = ""
     @State
     private var signedIn = false
     @State
@@ -22,21 +27,30 @@ struct AuthView: View {
             Color.white
             if signedIn {
                 VStack(spacing: 4) {
-                    Text("Username: \(username)")
-                        .foregroundColor(.black)
+
+                    
                     Text("Email: \(email)")
                         .foregroundColor(.black)
                     Text("UID: \(uid)")
+                    Text("Username: \(username)")
+                        .foregroundColor(.black)
+                    Text("\(AuthView.userid)")
                     AppView()
                     GoogleLogout(signedIn: $signedIn)
                         .frame(width: 200, height: 30, alignment: .center)
 
                 }
+                .onAppear(perform: saveuserID)
             } else {
                 GoogleLogin(signedIn: $signedIn, username: $username, email: $email, uid: $uid)
                     .frame(width: 200, height: 30, alignment: .center)
             }
         }.edgesIgnoringSafeArea(.all)
+    }
+    func saveuserID(){
+        AuthView.userid = uid
+        AuthView.userNAME = username
+        AuthView.emails = email
     }
 }
 

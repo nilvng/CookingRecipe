@@ -11,13 +11,16 @@ import Disk
 import Resolver
 import SwiftUI
 import Firebase
-
+import FirebaseFirestore
 
 class RecipeViewModel: ObservableObject, Identifiable {
     @Injected var bookmarkRepo : BookmarkRepository
-
+    private var cancellable = Set<AnyCancellable>()
     @Published var recipe : Recipe
     @Published var isFavorite : Bool = false
+    @Published var reviews = [Review]()
+//    @Published var reviewViewModels = [ReviewViewModel]()
+
     
     @ObservedObject var imageLoader : FirebaseImageLoader
     @Published var uiImage : UIImage?
@@ -29,12 +32,9 @@ class RecipeViewModel: ObservableObject, Identifiable {
     @Injected var authService : AuthenticationService
     @Published var userId : String = "unknown"
     
-    var bookmarkPath : String {
-        "User/\(userId)/bookmarks"
 
-    }
-    var db = Firestore.firestore()
     private var cancellables = Set<AnyCancellable>()
+    @Published var yourReview = [Review]()
     
     init(recipe: Recipe) {
         self.recipe = recipe
@@ -67,12 +67,51 @@ class RecipeViewModel: ObservableObject, Identifiable {
         
     }
     
+    
     func saveRecipe(){
         bookmarkRepo.saveRecipe(recipeP)
     }
     func removeSave(){
         bookmarkRepo.removeSave(recipeP)
         
+    }
+    
+    func fetchReviews() {
+        let db = Firestore.firestore()
+        
+        db.collection("Recipe/\(recipe.id!)/review")
+            .getDocuments() { (querySnapshot, err) in
+                if let queryss = querySnapshot {
+                    self.reviews = queryss.documents.compactMap { document -> Review? in
+                        try? document.data( as: Review.self )
+                    }
+                }
+            }
+        self.$reviews.map{ reviews in
+            reviews.map{ review in
+                ReviewViewModel(review: review)
+            }
+        }
+    }
+    
+    func existReview() -> Bool {
+        let db = Firestore.firestore()
+        
+        db.collection("Recipe/\(recipe.id!)/review")
+            .whereField("userid", isEqualTo: authService.user!.uid)
+            .getDocuments() { (querySnapshot, err) in
+                if let queryss = querySnapshot {
+                    self.yourReview = queryss.documents.compactMap { document -> Review? in
+                        try? document.data( as: Review.self )
+                    }
+                }
+            }
+//        self.$yourReview.map{ reviews in
+//            reviews.map{ review in
+//                ReviewViewModel(review: review)
+//            }
+//        }
+        return self.yourReview.count > 0
     }
     
     func toFavorite(){
@@ -83,4 +122,6 @@ class RecipeViewModel: ObservableObject, Identifiable {
             self.removeSave()
         }
     }
-}
+    }
+    
+
