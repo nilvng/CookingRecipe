@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 
 class RecipeStore : ObservableObject {
     var db = Firestore.firestore()
+    var storageRef = Storage.storage()
     var userId = "Nil_nhoa"
     var recipePath = "TestCreated"
     @Published var createdRecipes = [CreatedRecipe]()
@@ -20,8 +21,20 @@ class RecipeStore : ObservableObject {
         self.loadData()
     }
     
-    func removeRecipe(_ id : String){
-        db.collection(recipePath).document(id).delete()
+    func removeRecipe(_ recipe : CreatedRecipe){
+        guard let docId = recipe.id else {
+            return
+        }
+        if let videoUrl = recipe.videoUrl {
+            storageRef.reference(forURL: videoUrl).delete { err in
+                if let err = err {
+                    print("There is error in deleting file... \(err.localizedDescription)")
+                } else {
+                    print("done deleting file!")
+                }
+            }
+        }
+        db.collection(recipePath).document(docId).delete()
     }
     
     func loadData(){
@@ -56,6 +69,7 @@ struct CreatedRecipe : Identifiable, Codable, Equatable {
     @DocumentID var id : String? = UUID().uuidString
     var userId : String
     var title : String = ""
+    var challenge : String = ""
     var photoUrl : String = ""
     var youtubeUrl : String = ""
     var videoUrl : String?

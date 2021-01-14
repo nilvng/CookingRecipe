@@ -17,29 +17,46 @@ struct EditRecipeView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("*Title:")
+                Text("*Title:").bold()
                 TextField("meal title...",
                           text: $editRecipeVM.recipe.title)
             }
             
-            HStack{
-                Text("Attach Photo: ").bold()
-                TextField("embeded link...", text: $editRecipeVM.recipe.photoUrl)
+            HStack {
+                Text("*Challenge:").bold()
+                TextField("challenge name...",
+                          text: $editRecipeVM.recipe.challenge)
             }
             
             HStack{
-                Text("YouTube Video:")
+                Text("YouTube Video:").bold()
                 TextField("embeded link...", text: $editRecipeVM.recipe.youtubeUrl)
+            }
+
+            HStack{
+                Text("Attach Photo: ").bold()
+                TextField("embeded link...", text: $editRecipeVM.recipe.photoUrl)
+
             }
             
             HStack{
                 Text("Attach Video: ").bold()
-                Text(mediaURL != nil ? "attached" : "no file")
-                Button(action: {
-                    self.chooseMedia.toggle()
-                }) {
-                    Image(systemName: "paperclip")
-                        .imageScale(.large)
+                if mediaURL == nil {
+                    Text("no file")
+                    Button(action: {
+                        self.chooseMedia.toggle()
+                    }) {
+                        Image(systemName:"paperclip")
+                            .imageScale(.large)
+                    }
+                } else {
+                        Text("attached")
+                        Button(action: {
+                            self.mediaURL = nil
+                        }) {
+                            Image(systemName:"trash")
+                                .imageScale(.large)
+                    }
                 }
                 
             }
@@ -53,6 +70,10 @@ struct EditRecipeView: View {
                     editRecipeVM.addRecipe()
                 } else {
                     editRecipeVM.updateRecipe()
+                    if mediaURL?.absoluteString != editRecipeVM.recipe.videoUrl{
+                        editRecipeVM.deleteMedia()
+                        editRecipeVM.uploadMedia(mediaURL : self.mediaURL)
+                    }
                 }
                 self.presentationMode.wrappedValue.dismiss()
             }){
@@ -67,11 +88,13 @@ struct EditRecipeView: View {
             
             .sheet(isPresented: self.$chooseMedia){
                 MediaPicker(chooseMedia: self.$chooseMedia,
-                            mediaURL: self.$mediaURL)
+                        mediaURL: self.$mediaURL)
             }
-            .onReceive(editRecipeVM.$recipe) { recipe in
-                mediaURL = recipe.mediaURLs
-            }
+            .onReceive(editRecipeVM.$recipe, perform: { recipe in
+                if let videoUrl = recipe.videoUrl {
+                    self.mediaURL = URL(string: videoUrl)
+                }
+            })
         }
     }
 }

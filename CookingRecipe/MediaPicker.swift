@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 import Firebase
-import UIKit
-
+import AVKit
+import MobileCoreServices
 struct MediaPicker : UIViewControllerRepresentable {
 
     @Binding var chooseMedia : Bool
@@ -23,9 +23,10 @@ struct MediaPicker : UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIImagePickerController {
         
         let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
         picker.delegate = context.coordinator
-        picker.mediaTypes = ["public.image", "public.video"]
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+        picker.allowsEditing = false
         return picker
     }
     

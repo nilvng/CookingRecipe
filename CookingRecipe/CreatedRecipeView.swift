@@ -39,15 +39,17 @@ struct CreatedRecipeView: View {
                                         EditRecipeView(editRecipeVM: EditRecipeViewModel(recipe: recipe),isNew: false)
                         ) {
                             HStack {
-                                if let thumbnail = recipe.photoUrl{
-                                            ImageLoaderView(withURL: thumbnail)
-                                } else if let story = recipe.videoUrl {
-                                            VideoPlayer(urlString: story)
-                                        }
+                                if recipe.photoUrl != "" {
+                                    ImageLoaderView(withURL: recipe.photoUrl)
+                                }
+                                else if recipe.videoUrl != nil && recipe.videoUrl != ""{
+                                    VideoPlayer(urlString: recipe.videoUrl!)
+                                        .frame(height: 150, alignment: .center)
+                                }
                                 Text(recipe.title)
                                 Spacer(minLength: 0)
                                 Button(action : {
-                                    store.removeRecipe(recipe.id!)
+                                    store.removeRecipe(recipe)
                                 }){
                                     Image(systemName: "trash")
                                 }

@@ -47,30 +47,21 @@ class EditRecipeViewModel : ObservableObject {
         let title =  recipe.title
         let fileRef = storage.child(title)
         
-        fileRef.putFile(from: mediaURL1, metadata: nil){ (_, err) in
+        fileRef.putFile(from: mediaURL1, metadata: nil){ (meta, err) in
             
             if err != nil {
                 print((err?.localizedDescription)!)
                 return
             }
-            var thisMediaInfo = MediaInfo(url: "", contentType: "")
-            fileRef.getMetadata { meta, err in
-                if let error = err {
-                    print("cannot get type file \(error.localizedDescription)")
-                    return
-                } else {
                     print("Metadata is ... \(meta!)")
-                    thisMediaInfo.contentType = meta!.contentType ?? "nothing"
-                }
-            }
+
             fileRef.downloadURL {(downloadUrl, err) in
                 guard let url = downloadUrl else {
                     print("cannot get downloadurl of media file")
                     return
                 }
                 print(url)
-                thisMediaInfo.url = url.absoluteString
-                self.recipe.photoUrl = url.absoluteString
+                self.recipe.videoUrl = url.absoluteString
                 self.updateRecipe()
             }
             print("done uploading file!")
@@ -78,14 +69,16 @@ class EditRecipeViewModel : ObservableObject {
     }
     
     func deleteMedia(){
-        guard let docId = recipe.id else {
+        guard recipe.id != nil else {
             return
         }
-        storage.child(docId).delete { err in
-            if let err = err {
-                print("There is error in deleting file... \(err.localizedDescription)")
-            } else {
-                print("done deleting file!")
+        if let videoUrl = recipe.videoUrl {
+            Storage.storage().reference(forURL: videoUrl).delete { err in
+                if let err = err {
+                    print("There is error in deleting file... \(err.localizedDescription)")
+                } else {
+                    print("done deleting file!")
+                }
             }
         }
     }
