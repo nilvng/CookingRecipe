@@ -19,14 +19,11 @@ class RecipeViewModel: ObservableObject, Identifiable {
     @Published var recipe : Recipe
     @Published var isFavorite : Bool = false
     
-    @ObservedObject var imageLoader : FirebaseImageLoader
-    @Published var uiImage : UIImage?
-    
     var recipeP : RecipePreviewInfo {
-        RecipePreviewInfo(id: recipe.id!, title: recipe.title, image: recipe.media["photo"])
+        RecipePreviewInfo(id: recipe.id!, title: recipe.title, image: recipe.photoUrl)
     }
     
-    @Injected var authService : AuthenticationService
+    @LazyInjected var authService : AuthenticationService
     @Published var userId : String = "unknown"
     
     var bookmarkPath : String {
@@ -38,20 +35,6 @@ class RecipeViewModel: ObservableObject, Identifiable {
     
     init(recipe: Recipe) {
         self.recipe = recipe
-        self.imageLoader =  FirebaseImageLoader(recipe.media["photo"]!)
-        
-        // MARK: Get Thumbnail Image
-        // App will crash if there is no photo string
-        imageLoader.$data.map{ data in
-            if let data1 = data {
-                return UIImage(data: data1)
-            } else {
-                return nil
-            }
-        }
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] in self?.uiImage = $0 }
-        .store(in: &cancellables)
         
         bookmarkRepo.$bookmarks
         .receive(on: DispatchQueue.main)
@@ -61,10 +44,6 @@ class RecipeViewModel: ObservableObject, Identifiable {
                 }
             }
                 .store(in: &cancellables)
-                
-        
-
-        
     }
     
     func saveRecipe(){

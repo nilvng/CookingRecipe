@@ -8,44 +8,33 @@
 
 import Foundation
 import Firebase
-import Combine
+import Resolver
 
 class EditRecipeViewModel : ObservableObject {
-    @Published var recipe : CreatedRecipe
-    
-    var recipePath = "TestCreated"
-    private var db = Firestore.firestore()
-    private let storage = Storage.storage().reference()
-    private var cancellables = Set<AnyCancellable>()
-    
-    init(recipe : CreatedRecipe) {
+    @Published var recipe : Recipe
+    @Injected var recipeRepo : RecipeRepository
+
+    init(recipe : Recipe) {
         self.recipe = recipe
     }
     
     static func newRecipe() -> EditRecipeViewModel {
-        EditRecipeViewModel(recipe: CreatedRecipe(userId: ""))
+        EditRecipeViewModel(recipe: Recipe(ownerId: ""))
     }
-    
-    
+        
     func addRecipe(){
-        recipe.userId = "Nil_nhoa"
-        guard let docId = self.recipe.id else {
-            return
-        }
-        do {
-            let _ = try db.collection(recipePath).document(docId).setData(from: recipe)
-            print("done uploading recipe!")
-        } catch {
-            fatalError("Unable to encode recipe: \(error.localizedDescription).")
-        }
+        recipeRepo.addRecipe(recipe)
     }
     
+    func updateRecipe(){
+        recipeRepo.updateRecipe(recipe)
+    }
     func uploadMedia(mediaURL : URL?){
         guard let mediaURL1 = mediaURL else {
             return
         }
         let title =  recipe.title
-        let fileRef = storage.child(title)
+        let fileRef = Storage.storage().reference().child(title)
         
         fileRef.putFile(from: mediaURL1, metadata: nil){ (meta, err) in
             
@@ -80,16 +69,8 @@ class EditRecipeViewModel : ObservableObject {
                     print("done deleting file!")
                 }
             }
+            recipe.videoUrl = ""
         }
     }
-    
-    func updateRecipe(){
-        if let docId = recipe.id {
-            do {
-                let _ = try db.collection(recipePath).document(docId).setData(from: recipe)
-            } catch {
-                print("Unable to update recipe: \(error.localizedDescription)")
-            }
-        }
-    }
+
 }

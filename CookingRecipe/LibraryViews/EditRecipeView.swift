@@ -65,16 +65,20 @@ struct EditRecipeView: View {
             
             Button(action: {
                 print("click save")
-                if isNew{
-                    editRecipeVM.uploadMedia(mediaURL : self.mediaURL)
-                    editRecipeVM.addRecipe()
-                } else {
-                    editRecipeVM.updateRecipe()
-                    if mediaURL?.absoluteString != editRecipeVM.recipe.videoUrl{
-                        editRecipeVM.deleteMedia()
-                        editRecipeVM.uploadMedia(mediaURL : self.mediaURL)
-                    }
-                }
+                        if isNew{
+                            if let media = self.mediaURL {
+                            editRecipeVM.uploadMedia(mediaURL : media)
+                            } else {
+                                editRecipeVM.addRecipe()
+                            }
+                        } else {
+                            editRecipeVM.updateRecipe()
+                            if mediaURL?.absoluteString != editRecipeVM.recipe.videoUrl{
+                                editRecipeVM.deleteMedia()
+                                editRecipeVM.uploadMedia(mediaURL : self.mediaURL)
+                            }
+                        }
+
                 self.presentationMode.wrappedValue.dismiss()
             }){
                 Text("Save")
@@ -101,6 +105,6 @@ struct EditRecipeView: View {
 
 struct EditRecipeView_Previews: PreviewProvider {
     static var previews: some View {
-        EditRecipeView(editRecipeVM: EditRecipeViewModel(recipe: CreatedRecipe(userId: "", title: "")))
+        EditRecipeView(editRecipeVM: EditRecipeViewModel(recipe: Recipe()))
     }
 }

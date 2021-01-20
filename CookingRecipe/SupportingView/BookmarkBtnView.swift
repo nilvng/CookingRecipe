@@ -24,21 +24,6 @@ struct BookmarkBtnView: View {
             }
             .foregroundColor(.pink)
             .imageScale(.large)
-            Text("\(recipeViewModel.isFavorite ? "yay" : "nay")")
-
         }
-//        .onReceive(bookmarkRepo.$bookmarks){ bookmarks in
-//            if bookmarks.firstIndex(of: recipeViewModel.recipeP) != nil {
-//                self.isFavorite = true
-//            }
-//            isFavorite = bookmarkRepo.loadFavState(recipeId: recipeViewModel.recipe.id!)
-//        }
-//        .onAppear() {recipeViewModel.getFavState()}
-    }
-}
-
-struct BookmarkBtnView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookmarkBtnView(recipeViewModel: RecipeViewModel(recipe: recipesData[0]))
     }
 }

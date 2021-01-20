@@ -35,9 +35,9 @@ struct RecipeAttributeView: View {
     }
 }
 
-struct RecipeQInfo_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeAttributeView(recipe: recipesData[0])
-    }
-}
+//struct RecipeQInfo_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecipeAttributeView(recipe: recipesData[0])
+//    }
+//}
 

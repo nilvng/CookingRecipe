@@ -21,24 +21,19 @@ protocol BookmarkRepository : BaseBookmarkRepository {
 
     func saveRecipe(_ recipe: RecipePreviewInfo)
     func removeSave(_ recipe: RecipePreviewInfo)
-    func loadFavState(recipeId : String) -> Bool
-
 
 }
 
 class FirebaseBookmarkRepository: BaseBookmarkRepository, BookmarkRepository, ObservableObject {
-    
+
     @Injected var authService : AuthenticationService
     @Published var userId : String = "unknown"
     
     var bookmarkPath : String {
         "User/\(userId)/bookmarks"
-
     }
     var db = Firestore.firestore()
     private var cancellables = Set<AnyCancellable>()
-
-//    static let shared = FirebaseBookmarkRepository()
     
     func loadData(){
         db.collection(bookmarkPath)
@@ -51,7 +46,6 @@ class FirebaseBookmarkRepository: BaseBookmarkRepository, BookmarkRepository, Ob
                 }
             }
     }
-    
     
     override init() {
         super.init()
@@ -68,21 +62,6 @@ class FirebaseBookmarkRepository: BaseBookmarkRepository, BookmarkRepository, Ob
             }
             .store(in: &cancellables)
 }
-    
-    func loadFavState(recipeId : String) -> Bool{
-        var isfavorite = false
-        let docRef = db.collection(bookmarkPath).document(recipeId)
-        print(bookmarkPath)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                isfavorite = document.exists
-                print("\(recipeId) - exist \(document.exists)")
-
-            }
-        }
-        print("\(recipeId) - \(isfavorite)")
-        return isfavorite
-    }
     
     func saveRecipe(_ recipe: RecipePreviewInfo) {
         if let docid = recipe.id {
@@ -115,9 +94,11 @@ class LocalbookmarkRepository : BaseBookmarkRepository, BookmarkRepository {
     
     func loadFavState(recipeId : String) -> Bool {
         var isFav = false
-//        if bookmarks.firstIndex(of: recipe) != nil {
-//            isFav = true
-//        }
+        for bookmark in bookmarks {
+            if bookmark.id == recipeId {
+                isFav = true
+            }
+        }
         return isFav
     }
         

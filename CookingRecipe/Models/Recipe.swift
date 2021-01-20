@@ -11,25 +11,31 @@ import FirebaseFirestoreSwift
 
 struct Recipe: Codable, Identifiable {
     @DocumentID var id : String? = UUID().uuidString
-    var title: String
-    var owner: String
+    var title: String = ""
+    var owner: String = ""
+    var ownerId : String = ""
     
-    var duration: Double
-    var media: [String : String]
-    var servings: Int
-    var categories: [String]
+    var duration: Double = 0.0
+    var photoUrl : String = ""
+    var videoUrl : String?
+    var youtubeUrl : String = ""
     
-    var ingredients: [String]
-    var instructions: [String]
+    var servings: Int = 0
+    
+    var challenge : String = ""
+    var categories = [String]()
+    
+    var ingredients = [String]()
+    var instructions = [String]()
     
     enum CodingKeys: String ,CodingKey {
-        case id, title, owner, duration, media, servings, categories,ingredients, instructions = "steps"
+        case id, title, owner, ownerId, duration,photoUrl,videoUrl, youtubeUrl, servings, categories,ingredients, instructions = "steps"
     }
     
 }
 
 let recipesData = [
-    Recipe(title: "Dalgona", owner: "Nil", duration: 12, media: ["photo":"meal media/dalgona.jpg", "video": "https://youtube.com/embed/fYX1BcgWMqw"], servings: 1, categories : ["quick n easy"], ingredients: [
+    Recipe(title: "Dalgona", owner: "Nil", ownerId: "", duration: 12, photoUrl : "",youtubeUrl: "https://youtube.com/embed/fYX1BcgWMqw", servings: 1, categories : ["quick n easy"], ingredients: [
         "Instant black coffeee",
         "Sugar",
         "Hot water",
@@ -40,7 +46,7 @@ let recipesData = [
         "whisk it until we got thick foam of coffeee",
         "Pour milk to glass with ice and the mixture on top"
     ]),
-    Recipe(title:"Avocado Crostini", owner: "Khoa", duration: 20, media: ["":""], servings: 2, categories : ["quick n easy"], ingredients: [
+    Recipe(title:"Avocado Crostini", owner: "Khoa", ownerId: "", duration: 20,photoUrl : "",youtubeUrl: "", servings: 2, categories : ["quick n easy"], ingredients: [
         "1 punnet cherry Tomatoes, halved",
         "4 hard boiled eggs, halved and sliced",
         "1 carrot, cut into thin strips",
