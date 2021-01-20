@@ -25,11 +25,6 @@ struct AppView: View {
                 Image(systemName: "person")
               Text("Library")
             })
-        AuthView()
-            .tabItem ({
-                Image(systemName: "person")
-              Text("Library")
-            })
 
     }
     .edgesIgnoringSafeArea(.all)
