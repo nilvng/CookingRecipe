@@ -7,39 +7,33 @@
 
 import Foundation
 import Combine
-import Disk
+import Firebase
+import FirebaseFirestoreSwift
+import Resolver
 
 class HomeViewModel: ObservableObject {
     
-    @Published var recipeRepository : RecipeRepository = FirebaseRecipeRepository()
     @Published var recipeViewModels = [RecipeViewModel]()
-
-    var favRecipe = [String]()
     
     private var cancellable = Set<AnyCancellable>()
     
     init() {
-        
-        do {
-            favRecipe = try Disk.retrieve("savedRecipes.json", from: .caches, as: [String].self)
-        } catch  {
-            print("error from getting saved recipes")
-        }
-        
-        recipeRepository.$recipes.map{ recipes in
-            recipes.map{ recipe in
-                if self.favRecipe.contains(recipe.id ?? "noid"){
-                let rVM = RecipeViewModel(recipe : recipe)
-                    rVM.isFavorite = true
-                    return rVM
+        loadData()
+    }
+    func loadData(){
+        let db = Firestore.firestore()
+        let recipePath = "Recipe"
+        db.collection(recipePath).addSnapshotListener { (querySnapshot, err) in
+            if let querySnapshot = querySnapshot {
+                let recipes = querySnapshot.documents.compactMap { document -> Recipe? in
+                    try? document.data(as: Recipe.self)
                 }
-                return RecipeViewModel(recipe : recipe)
-
+                
+                self.recipeViewModels = recipes.map{ recipe in
+                    RecipeViewModel(recipe: recipe)
+                }
             }
         }
-        .assign(to: \.recipeViewModels, on: self)
-        .store(in: &cancellable)
     }
-    
     
 }

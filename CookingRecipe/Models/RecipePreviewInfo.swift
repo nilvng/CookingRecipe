@@ -14,4 +14,9 @@ struct RecipePreviewInfo : Codable, Identifiable, Equatable {
     var title : String
     var image : String?
     @ServerTimestamp var createdTime : Timestamp?
+    
+    static func == (lhs: RecipePreviewInfo, rhs: RecipePreviewInfo) -> Bool{
+        return
+            lhs.id == rhs.id 
+    }
 }

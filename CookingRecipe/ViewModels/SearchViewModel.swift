@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Resolver
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -15,7 +16,7 @@ class SearchViewModel: ObservableObject {
     
     var db = Firestore.firestore()
     
-    @Published var recipesRepo = FirebaseRecipeRepository()
+    @Injected var recipesRepo : RecipeRepository
     @Published var result = [Recipe]()
     @Published var recipeViewModels = [RecipeViewModel]()
     

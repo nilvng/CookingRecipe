@@ -29,39 +29,28 @@ struct RecipeDetailView: View {
                             Text(recipeViewModel.recipe.title)
                                 .font(.title)
                                 .bold()
+                            
                             Spacer()
-                            BookmarkBtnView(bookmarkVM: recipeViewModel.bookmarkVM)
+                            
+                            BookmarkBtnView(recipeViewModel: recipeViewModel)
                         }
                         // OWNER
                         Text("by \(recipeViewModel.recipe.owner)")
                             .font(.body)
                     }
                     .padding(.horizontal, 10)
-                    // meal's image
-                    let videoURL = recipeViewModel.recipe.media["video"]
-                    if videoURL != nil && videoURL != ""{
-                            WebView(url: videoURL!)
+                    // meal's media
+                    let videoURL = recipeViewModel.recipe.youtubeUrl
+                    if videoURL != ""{
+                            WebView(url: videoURL)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: 500, maxHeight: .infinity, alignment: .center)
                     } else {
-                        Group {
-                            if let uiimage = recipeViewModel.uiImage {
-                                Image(uiImage: uiimage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                            } else {
-                                Text("Loading...")
-                            }
-                        }
+                        ImageLoaderView(withURL: recipeViewModel.recipe.photoUrl)
                         .frame(minWidth: 300, idealWidth: 400, maxWidth: .infinity, minHeight: 300, idealHeight: 400, maxHeight: .infinity, alignment: .center)
                     }
                     // QLOOK
                     RecipeAttributeView(recipe: recipeViewModel.recipe)
                     // INGREDIENTS
-                    Text("Ingredients")
-                        .bold()
-                        .font(.title2)
-                        .padding(.horizontal, 7)
-                        .padding(.bottom, 5)
                     IngredientsList(ingredients: recipeViewModel.recipe.ingredients)
                     // DIRECTION
                     Text("Directions")
@@ -91,23 +80,47 @@ struct RecipeDetailView: View {
     }
 }
 
-struct RecipeDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeDetailView(recipeViewModel: RecipeViewModel(recipe: recipesData[0]))    }
-}
-
 struct IngredientsList: View {
     var ingredients: [String]
     var body: some View {
+        Text("Ingredients")
+            .bold()
+            .font(.title2)
+            .padding(.horizontal, 7)
+            .padding(.bottom, 5)
+
             ForEach(ingredients, id: \.self) { item in
                 HStack {
                     Text(item)
-//                    Spacer()
-//                    Text("1 pack")
-//                        .bold()
                 }
                 .padding(.horizontal, 10)
                 Divider()
             }
     }
+}
+
+struct DirectionsList: View {
+    var steps: [String]
+    var body: some View {
+            VStack(alignment: .leading) {
+                ForEach(steps.indices, id: \.self) { i in
+                    HStack {
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text("Step \(i + 1)")
+                                .font(.headline)
+                            Text(steps[i])
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    Divider()
+                }
+                .padding(.bottom, 10)
+            }
+    }
+}
+
+struct RecipeDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        RecipeDetailView(recipeViewModel: RecipeViewModel(recipe: recipesData[0]))    }
 }

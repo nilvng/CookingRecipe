@@ -6,37 +6,24 @@
 //
 
 import SwiftUI
-import Disk
+import Resolver
 
 struct BookmarkBtnView: View {
-    
-    @ObservedObject var bookmarkVM : BookmarkViewModel
-    
+    @ObservedObject var recipeViewModel : RecipeViewModel
+    @State var isFavorite : Bool = false
     var body: some View {
-        Button(action: {
-            self.toFavorite()
-        }) {
-            if self.bookmarkVM.isFavorite {
-                Image(systemName: "heart.fill")
-            } else {
-                Image(systemName: "heart")
+        VStack {
+            Button(action: {
+                recipeViewModel.toFavorite()
+            }) {
+                if recipeViewModel.isFavorite {
+                    Image(systemName: "heart.fill")
+                } else {
+                    Image(systemName: "heart")
+                }
             }
+            .foregroundColor(.pink)
+            .imageScale(.large)
         }
-        .foregroundColor(.pink)
-        .imageScale(.large)
-    }
-    
-    func toFavorite(){
-        if self.bookmarkVM.isFavorite {
-            bookmarkVM.removeSave()
-        } else {
-            bookmarkVM.saveRecipe()
-        }
-    }
-}
-
-struct BookmarkBtnView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookmarkBtnView(bookmarkVM: BookmarkViewModel(recipe: recipesData[0]))
     }
 }

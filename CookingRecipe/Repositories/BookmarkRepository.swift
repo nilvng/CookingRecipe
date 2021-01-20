@@ -7,7 +7,9 @@
 
 import Foundation
 import Disk
+import Resolver
 import SwiftUI
+import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -18,26 +20,48 @@ class BaseBookmarkRepository {
 protocol BookmarkRepository : BaseBookmarkRepository {
 
     func saveRecipe(_ recipe: RecipePreviewInfo)
-    func removeBookmark(_ recipe: RecipePreviewInfo)
-    
+    func removeSave(_ recipe: RecipePreviewInfo)
+
 }
 
 class FirebaseBookmarkRepository: BaseBookmarkRepository, BookmarkRepository, ObservableObject {
+
+    @Injected var authService : AuthenticationService
+    @Published var userId : String = "unknown"
     
-    var bookmarkPath : String = "User/user1/bookmarks"
+    var bookmarkPath : String {
+        "User/\(userId)/bookmarks"
+    }
     var db = Firestore.firestore()
+    private var cancellables = Set<AnyCancellable>()
     
-    private func loadData(){
+    func loadData(){
         db.collection(bookmarkPath)
             .order(by: "createdTime", descending: true)
-            .addSnapshotListener { (querySnapshot, err) in
-            if let querySnapshot = querySnapshot {
-                self.bookmarks = querySnapshot.documents.compactMap { document -> RecipePreviewInfo? in
-                    try? document.data(as: RecipePreviewInfo.self)
+            .getDocuments() { (querySnapshot, err) in
+                if let querySnapshot = querySnapshot {
+                    self.bookmarks = querySnapshot.documents.compactMap { document -> RecipePreviewInfo? in
+                        try? document.data(as: RecipePreviewInfo.self)
+                    }
                 }
             }
-        }
     }
+    
+    override init() {
+        super.init()
+        
+        authService.$user
+            .compactMap { user in user?.uid}
+            .assign(to: \.userId, on: self)
+            .store(in: &cancellables)
+        
+        authService.$user
+            .receive(on: DispatchQueue.main)
+            .sink { user in
+                self.loadData()
+            }
+            .store(in: &cancellables)
+}
     
     func saveRecipe(_ recipe: RecipePreviewInfo) {
         if let docid = recipe.id {
@@ -45,12 +69,13 @@ class FirebaseBookmarkRepository: BaseBookmarkRepository, BookmarkRepository, Ob
                 let _ = try db.collection(bookmarkPath).document(docid).setData(from: recipe)
             }
             catch {
-                print("There was an error while trying to save a task \(error.localizedDescription).")
+                print("There was an error while trying to save a recipe \(error.localizedDescription).")
             }
         }
+        loadData()
     }
     
-    func removeBookmark(_ recipe: RecipePreviewInfo) {
+    func removeSave(_ recipe: RecipePreviewInfo) {
         if let docid = recipe.id {
             db.collection(bookmarkPath).document(docid).delete { (error) in
                 if let error = error {
@@ -58,18 +83,25 @@ class FirebaseBookmarkRepository: BaseBookmarkRepository, BookmarkRepository, Ob
                 }
             }
         }
-    }
-
-
-    override init() {
-        super.init()
         loadData()
     }
+    
 }
 
 class LocalbookmarkRepository : BaseBookmarkRepository, BookmarkRepository {
+    
     var filePath : String = "bookmarks.json"
     
+    func loadFavState(recipeId : String) -> Bool {
+        var isFav = false
+        for bookmark in bookmarks {
+            if bookmark.id == recipeId {
+                isFav = true
+            }
+        }
+        return isFav
+    }
+        
     func saveRecipe(_ recipe: RecipePreviewInfo){
         self.bookmarks.append(recipe)
     }
@@ -82,7 +114,7 @@ class LocalbookmarkRepository : BaseBookmarkRepository, BookmarkRepository {
         }
     }
     
-    func removeBookmark(_ recipe: RecipePreviewInfo){
+    func removeSave(_ recipe: RecipePreviewInfo){
         
         if let i = bookmarks.firstIndex(of: recipe){
             bookmarks.remove(at: i)
