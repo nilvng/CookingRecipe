@@ -7,17 +7,26 @@
 
 import Foundation
 import Combine
+<<<<<<< HEAD
 import Firebase
 import FirebaseFirestoreSwift
+=======
+import Disk
+>>>>>>> review_AnhTran
 import Resolver
 
 class HomeViewModel: ObservableObject {
     
+<<<<<<< HEAD
+=======
+    @Injected var recipeRepository : RecipeRepository
+>>>>>>> review_AnhTran
     @Published var recipeViewModels = [RecipeViewModel]()
     
     private var cancellable = Set<AnyCancellable>()
     
     init() {
+<<<<<<< HEAD
         loadData()
     }
     func loadData(){
@@ -32,6 +41,12 @@ class HomeViewModel: ObservableObject {
                 self.recipeViewModels = recipes.map{ recipe in
                     RecipeViewModel(recipe: recipe)
                 }
+=======
+        
+        recipeRepository.$recipes.map{ recipes in
+            recipes.map{ recipe in
+                return RecipeViewModel(recipe : recipe)
+>>>>>>> review_AnhTran
             }
         }
     }

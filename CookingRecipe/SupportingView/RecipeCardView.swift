@@ -58,4 +58,3 @@ struct RecipeCardView_Previews: PreviewProvider {
     RecipeCardView(recipeViewModel: RecipeViewModel(recipe: recipesData[0]))
   }
 }
-

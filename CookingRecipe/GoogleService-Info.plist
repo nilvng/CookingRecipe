@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>272317650390-di60r754u9nq9uut8aea9ulk4o6luupf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.272317650390-di60r754u9nq9uut8aea9ulk4o6luupf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyARjKtDxYcoq2L6W7Ggaw1YJzjBjQlSU00</string>
+	<key>GCM_SENDER_ID</key>
+	<string>272317650390</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.rmit.CookingRecipe</string>
+	<key>PROJECT_ID</key>
+	<string>food-1ef87</string>
+	<key>STORAGE_BUCKET</key>
+	<string>food-1ef87.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:272317650390:ios:43c159b87e2c8dc400c077</string>
+	<key>DATABASE_URL</key>
+	<string>https://food-1ef87.firebaseio.com</string>
+</dict>
+</plist>

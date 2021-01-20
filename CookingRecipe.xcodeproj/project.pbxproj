@@ -10,18 +10,24 @@
 		159F70E2B007E39F391F558E /* Pods_CookingRecipe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F01721B17B84A9DE6B4C7BB /* Pods_CookingRecipe.framework */; };
 		6312C487502C308F504499A0 /* Pods_CookingRecipe_CookingRecipeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9E542ABB66C8304D9CF134 /* Pods_CookingRecipe_CookingRecipeUITests.framework */; };
 		7DD695892589E2CB00BFED53 /* BookmarkBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695882589E2CB00BFED53 /* BookmarkBtnView.swift */; };
+<<<<<<< HEAD
+=======
+		7DD695962589EEDA00BFED53 /* FirebaseImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695952589EEDA00BFED53 /* FirebaseImageLoader.swift */; };
+>>>>>>> review_AnhTran
 		7DD695A12589F3A300BFED53 /* RecipeAttrributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD695A02589F3A300BFED53 /* RecipeAttrributeView.swift */; };
 		83D4ABD705C8DE0C31D24B7E /* Pods_CookingRecipeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA36512E881A95856A2746 /* Pods_CookingRecipeTests.framework */; };
-		C80B67AD257E649D0065317B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C80B67AC257E649C0065317B /* GoogleService-Info.plist */; };
 		C80B67CD257F56490065317B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67CC257F56490065317B /* SearchView.swift */; };
 		C80B67D8257F6C8A0065317B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67D7257F6C8A0065317B /* SearchViewModel.swift */; };
 		C80B67DE257FB30A0065317B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67DD257FB30A0065317B /* CategoryView.swift */; };
 		C80B67E3257FBB2C0065317B /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67E2257FBB2C0065317B /* CategoryViewModel.swift */; };
 		C80B67E8257FBE6D0065317B /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B67E7257FBE6D0065317B /* RecipeListView.swift */; };
+<<<<<<< HEAD
 		C80FAEA425B0883F00563917 /* EditRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAEA325B0883F00563917 /* EditRecipeView.swift */; };
 		C80FAEA925B0885600563917 /* EditRecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAEA825B0885600563917 /* EditRecipeViewModel.swift */; };
 		C80FAEB325B0887500563917 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAEB225B0887500563917 /* VideoPlayer.swift */; };
 		C80FAEB825B0888600563917 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAEB725B0888600563917 /* ImageLoader.swift */; };
+=======
+>>>>>>> review_AnhTran
 		C816DD48258DDC6B00D3E939 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C816DD47258DDC6B00D3E939 /* AuthView.swift */; };
 		C827066D2567F715001D5420 /* CookingRecipeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827066C2567F715001D5420 /* CookingRecipeApp.swift */; };
 		C827066F2567F715001D5420 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C827066E2567F715001D5420 /* ContentView.swift */; };
@@ -42,8 +48,23 @@
 		C879F696257BDAFA0007C5B7 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C879F695257BDAFA0007C5B7 /* RecipeViewModel.swift */; };
 		C879F69E257BDD530007C5B7 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C879F69D257BDD530007C5B7 /* RecipeRepository.swift */; };
 		C88BCFEC258472D700D18530 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BCFEB258472D700D18530 /* Browser.swift */; };
+<<<<<<< HEAD
 		C8B532D02590A673001F31DA /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B532CF2590A673001F31DA /* AuthenticationService.swift */; };
 		C8B532D82590A97D001F31DA /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B532D72590A97D001F31DA /* App+Injection.swift */; };
+=======
+		C88BCFF42584D44D00D18530 /* FirebaseImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BCFF32584D44D00D18530 /* FirebaseImageView.swift */; };
+		C8B532D02590A673001F31DA /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B532CF2590A673001F31DA /* AuthenticationService.swift */; };
+		C8B532D82590A97D001F31DA /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B532D72590A97D001F31DA /* App+Injection.swift */; };
+		D260BAE825948CED004C2A70 /* ReviewRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260BAE725948CED004C2A70 /* ReviewRepository.swift */; };
+		D260BAED25948D25004C2A70 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260BAEC25948D25004C2A70 /* ReviewViewModel.swift */; };
+		D260BAF225948EA3004C2A70 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260BAF125948EA3004C2A70 /* Review.swift */; };
+		D2E8A4AD25A08E7D0060AAFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2E8A4AC25A08E7D0060AAFC /* GoogleService-Info.plist */; };
+		D2E8A4E525A1E5240060AAFC /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A4E425A1E5240060AAFC /* ReviewView.swift */; };
+		D2E8A50725A33CE50060AAFC /* CreateReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A50625A33CE50060AAFC /* CreateReview.swift */; };
+		D2E8A50F25A341220060AAFC /* OneReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8A50E25A341210060AAFC /* OneReviewView.swift */; };
+		FE87C09725A448DB00C1A2E3 /* EditReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE87C09625A448DB00C1A2E3 /* EditReview.swift */; };
+		FE9DD2A325A4F0E4002A83C5 /* EditOneReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9DD2A225A4F0E4002A83C5 /* EditOneReview.swift */; };
+>>>>>>> review_AnhTran
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,19 +88,25 @@
 		5031DD41347A11686E45A4DC /* Pods-CookingRecipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe.release.xcconfig"; path = "Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe.release.xcconfig"; sourceTree = "<group>"; };
 		59E4A2D6E6E6CC32279847D5 /* Pods-CookingRecipe-CookingRecipeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe-CookingRecipeUITests.release.xcconfig"; path = "Target Support Files/Pods-CookingRecipe-CookingRecipeUITests/Pods-CookingRecipe-CookingRecipeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7DD695882589E2CB00BFED53 /* BookmarkBtnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkBtnView.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		7DD695952589EEDA00BFED53 /* FirebaseImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageLoader.swift; sourceTree = "<group>"; };
+>>>>>>> review_AnhTran
 		7DD695A02589F3A300BFED53 /* RecipeAttrributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAttrributeView.swift; sourceTree = "<group>"; };
 		874B77215FC8CACA0946E109 /* Pods-CookingRecipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe.debug.xcconfig"; path = "Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe.debug.xcconfig"; sourceTree = "<group>"; };
 		9F01721B17B84A9DE6B4C7BB /* Pods_CookingRecipe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookingRecipe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C80B67AC257E649C0065317B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/mac/Downloads/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		C80B67CC257F56490065317B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		C80B67D7257F6C8A0065317B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C80B67DD257FB30A0065317B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		C80B67E2257FBB2C0065317B /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		C80B67E7257FBE6D0065317B /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		C80FAEA325B0883F00563917 /* EditRecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditRecipeView.swift; path = CookingRecipe/LibraryViews/EditRecipeView.swift; sourceTree = SOURCE_ROOT; };
 		C80FAEA825B0885600563917 /* EditRecipeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecipeViewModel.swift; sourceTree = "<group>"; };
 		C80FAEB225B0887500563917 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		C80FAEB725B0888600563917 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> review_AnhTran
 		C816DD47258DDC6B00D3E939 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		C82706692567F715001D5420 /* CookingRecipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookingRecipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C827066C2567F715001D5420 /* CookingRecipeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookingRecipeApp.swift; sourceTree = "<group>"; };
@@ -106,13 +133,26 @@
 		C879F695257BDAFA0007C5B7 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		C879F69D257BDD530007C5B7 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		C88BCFEB258472D700D18530 /* Browser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browser.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		C88BCFF32584D44D00D18530 /* FirebaseImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImageView.swift; sourceTree = "<group>"; };
+>>>>>>> review_AnhTran
 		C8B532CF2590A673001F31DA /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		C8B532D72590A97D001F31DA /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		C8ED38ED65E0F3C2E4EC222C /* Pods-CookingRecipe-CookingRecipeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe-CookingRecipeUITests.debug.xcconfig"; path = "Target Support Files/Pods-CookingRecipe-CookingRecipeUITests/Pods-CookingRecipe-CookingRecipeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D260BAE725948CED004C2A70 /* ReviewRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRepository.swift; sourceTree = "<group>"; };
+		D260BAEC25948D25004C2A70 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		D260BAF125948EA3004C2A70 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		D2E8A4AC25A08E7D0060AAFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D2E8A4E425A1E5240060AAFC /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		D2E8A50625A33CE50060AAFC /* CreateReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReview.swift; sourceTree = "<group>"; };
+		D2E8A50E25A341210060AAFC /* OneReviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneReviewView.swift; sourceTree = "<group>"; };
 		DB53FB1DADBCE9B583F9CAC1 /* Pods-CookingRecipeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipeTests.debug.xcconfig"; path = "Target Support Files/Pods-CookingRecipeTests/Pods-CookingRecipeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE597B596D6152746D0DD57A /* Pods-CookingRecipeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipeTests.release.xcconfig"; path = "Target Support Files/Pods-CookingRecipeTests/Pods-CookingRecipeTests.release.xcconfig"; sourceTree = "<group>"; };
 		F7BA36512E881A95856A2746 /* Pods_CookingRecipeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookingRecipeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9E542ABB66C8304D9CF134 /* Pods_CookingRecipe_CookingRecipeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookingRecipe_CookingRecipeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE87C09625A448DB00C1A2E3 /* EditReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReview.swift; sourceTree = "<group>"; };
+		FE9DD2A225A4F0E4002A83C5 /* EditOneReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOneReview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +199,7 @@
 		C82706602567F715001D5420 = {
 			isa = PBXGroup;
 			children = (
+				C8B532D72590A97D001F31DA /* App+Injection.swift */,
 				C827066B2567F715001D5420 /* CookingRecipe */,
 				C827067D2567F716001D5420 /* CookingRecipeTests */,
 				C82706882567F717001D5420 /* CookingRecipeUITests */,
@@ -181,6 +222,12 @@
 		C827066B2567F715001D5420 /* CookingRecipe */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+=======
+				D2E8A4AC25A08E7D0060AAFC /* GoogleService-Info.plist */,
+				C8B532CF2590A673001F31DA /* AuthenticationService.swift */,
+				C8648AA4256B91DB002EC8F2 /* Models */,
+>>>>>>> review_AnhTran
 				C88BCFEA258472C200D18530 /* Helper */,
 				C8B532D72590A97D001F31DA /* App+Injection.swift */,
 				C8B532CF2590A673001F31DA /* AuthenticationService.swift */,
@@ -195,7 +242,6 @@
 				C827066E2567F715001D5420 /* ContentView.swift */,
 				C82706702567F716001D5420 /* Assets.xcassets */,
 				C82706752567F716001D5420 /* Info.plist */,
-				C80B67AC257E649C0065317B /* GoogleService-Info.plist */,
 				C82706722567F716001D5420 /* Preview Content */,
 			);
 			path = CookingRecipe;
@@ -233,6 +279,15 @@
 				C80B67E7257FBE6D0065317B /* RecipeListView.swift */,
 				7DD695882589E2CB00BFED53 /* BookmarkBtnView.swift */,
 				7DD695A02589F3A300BFED53 /* RecipeAttrributeView.swift */,
+<<<<<<< HEAD
+=======
+				C8532587258CE11300BD8C51 /* TwoColumnsView.swift */,
+				D2E8A50E25A341210060AAFC /* OneReviewView.swift */,
+				D2E8A4E425A1E5240060AAFC /* ReviewView.swift */,
+				D2E8A50625A33CE50060AAFC /* CreateReview.swift */,
+				FE87C09625A448DB00C1A2E3 /* EditReview.swift */,
+				FE9DD2A225A4F0E4002A83C5 /* EditOneReview.swift */,
+>>>>>>> review_AnhTran
 			);
 			path = SupportingView;
 			sourceTree = "<group>";
@@ -242,6 +297,7 @@
 			children = (
 				C8648AC3256D35A9002EC8F2 /* Recipe.swift */,
 				C8532577258B69B800BD8C51 /* RecipePreviewInfo.swift */,
+				D260BAF125948EA3004C2A70 /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +306,12 @@
 			isa = PBXGroup;
 			children = (
 				C8648AA5256B91F1002EC8F2 /* RecipeDetailView.swift */,
+<<<<<<< HEAD
+=======
+				C82B1254258354A800830E5E /* UserView.swift */,
+				C84972A22570A05400581BD9 /* DirectionsCarouselView.swift */,
+				C80B67DD257FB30A0065317B /* CategoryView.swift */,
+>>>>>>> review_AnhTran
 				C816DD47258DDC6B00D3E939 /* AuthView.swift */,
 			);
 			path = Views;
@@ -262,6 +324,10 @@
 				C879F695257BDAFA0007C5B7 /* RecipeViewModel.swift */,
 				C80B67D7257F6C8A0065317B /* SearchViewModel.swift */,
 				C80B67E2257FBB2C0065317B /* CategoryViewModel.swift */,
+<<<<<<< HEAD
+=======
+				D260BAEC25948D25004C2A70 /* ReviewViewModel.swift */,
+>>>>>>> review_AnhTran
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -271,6 +337,11 @@
 			children = (
 				C879F69D257BDD530007C5B7 /* RecipeRepository.swift */,
 				C8733D81258A2115002B5AEB /* BookmarkRepository.swift */,
+<<<<<<< HEAD
+=======
+				7DD695A52589F5AD00BFED53 /* UserRepository.swift */,
+				D260BAE725948CED004C2A70 /* ReviewRepository.swift */,
+>>>>>>> review_AnhTran
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -429,8 +500,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C82706742567F716001D5420 /* Preview Assets.xcassets in Resources */,
+				D2E8A4AD25A08E7D0060AAFC /* GoogleService-Info.plist in Resources */,
 				C82706712567F716001D5420 /* Assets.xcassets in Resources */,
-				C80B67AD257E649D0065317B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,7 +668,15 @@
 				C88BCFEC258472D700D18530 /* Browser.swift in Sources */,
 				C80FAEB325B0887500563917 /* VideoPlayer.swift in Sources */,
 				7DD695A12589F3A300BFED53 /* RecipeAttrributeView.swift in Sources */,
+				FE87C09725A448DB00C1A2E3 /* EditReview.swift in Sources */,
 				C879F691257BDA890007C5B7 /* HomeViewModel.swift in Sources */,
+<<<<<<< HEAD
+=======
+				C88BCFF42584D44D00D18530 /* FirebaseImageView.swift in Sources */,
+				D260BAE825948CED004C2A70 /* ReviewRepository.swift in Sources */,
+				FE9DD2A325A4F0E4002A83C5 /* EditOneReview.swift in Sources */,
+				D2E8A50F25A341220060AAFC /* OneReviewView.swift in Sources */,
+>>>>>>> review_AnhTran
 				7DD695892589E2CB00BFED53 /* BookmarkBtnView.swift in Sources */,
 				C8B532D02590A673001F31DA /* AuthenticationService.swift in Sources */,
 				C879F687257BD9A60007C5B7 /* AppView.swift in Sources */,
@@ -605,19 +684,41 @@
 				C8B532D82590A97D001F31DA /* App+Injection.swift in Sources */,
 				C82B1255258354A800830E5E /* UserView.swift in Sources */,
 				C8532578258B69B800BD8C51 /* RecipePreviewInfo.swift in Sources */,
+<<<<<<< HEAD
+=======
+				7DD695962589EEDA00BFED53 /* FirebaseImageLoader.swift in Sources */,
+				D2E8A50725A33CE50060AAFC /* CreateReview.swift in Sources */,
+				C8648AB1256B9412002EC8F2 /* DirectionsListView.swift in Sources */,
+				C8532588258CE11300BD8C51 /* TwoColumnsView.swift in Sources */,
+>>>>>>> review_AnhTran
 				C827066F2567F715001D5420 /* ContentView.swift in Sources */,
 				C8733D82258A2115002B5AEB /* BookmarkRepository.swift in Sources */,
 				C879F69E257BDD530007C5B7 /* RecipeRepository.swift in Sources */,
 				C816DD48258DDC6B00D3E939 /* AuthView.swift in Sources */,
+<<<<<<< HEAD
 				C80FAEA925B0885600563917 /* EditRecipeViewModel.swift in Sources */,
+=======
+>>>>>>> review_AnhTran
 				C80B67CD257F56490065317B /* SearchView.swift in Sources */,
+				D260BAED25948D25004C2A70 /* ReviewViewModel.swift in Sources */,
 				C8648AC4256D35A9002EC8F2 /* Recipe.swift in Sources */,
 				C830245025B4228100C0B67C /* MediaPicker.swift in Sources */,
 				C80B67D8257F6C8A0065317B /* SearchViewModel.swift in Sources */,
+<<<<<<< HEAD
 				C80FAEB825B0888600563917 /* ImageLoader.swift in Sources */,
 				C879F696257BDAFA0007C5B7 /* RecipeViewModel.swift in Sources */,
 				C80B67E8257FBE6D0065317B /* RecipeListView.swift in Sources */,
 				C80B67E3257FBB2C0065317B /* CategoryViewModel.swift in Sources */,
+=======
+				C879F696257BDAFA0007C5B7 /* RecipeViewModel.swift in Sources */,
+				C879F682257BD9460007C5B7 /* RecipeCardView.swift in Sources */,
+				C84972A32570A05400581BD9 /* DirectionsCarouselView.swift in Sources */,
+				D2E8A4E525A1E5240060AAFC /* ReviewView.swift in Sources */,
+				C80B67E8257FBE6D0065317B /* RecipeListView.swift in Sources */,
+				C80B67E3257FBB2C0065317B /* CategoryViewModel.swift in Sources */,
+				D260BAF225948EA3004C2A70 /* Review.swift in Sources */,
+				C82B123F2581C10700830E5E /* User.swift in Sources */,
+>>>>>>> review_AnhTran
 				C8648AA6256B91F1002EC8F2 /* RecipeDetailView.swift in Sources */,
 				C80B67DE257FB30A0065317B /* CategoryView.swift in Sources */,
 				C827066D2567F715001D5420 /* CookingRecipeApp.swift in Sources */,
