@@ -18,6 +18,7 @@ class RecipeViewModel: ObservableObject, Identifiable {
 
     @Published var recipe : Recipe
     @Published var isFavorite : Bool = false
+    @Published var reviews = [Review]()
     
     var recipeP : RecipePreviewInfo {
         RecipePreviewInfo(id: recipe.id!, title: recipe.title, image: recipe.photoUrl)
@@ -53,7 +54,35 @@ class RecipeViewModel: ObservableObject, Identifiable {
         bookmarkRepo.removeSave(recipeP)
         
     }
+    func fetchReviews() {
+        let db = Firestore.firestore()
+        
+        db.collection("Recipe/\(recipe.id!)/review")
+            .getDocuments() { (querySnapshot, err) in
+                if let queryss = querySnapshot {
+                    self.reviews = queryss.documents.compactMap { document -> Review? in
+                        try? document.data( as: Review.self )
+                    }
+                }
+            }
+
+    }
     
+    func existReview() -> Bool {
+        let db = Firestore.firestore()
+        
+        db.collection("Recipe/\(recipe.id!)/review")
+            .whereField("userid", isEqualTo: authService.user!.uid)
+            .getDocuments() { (querySnapshot, err) in
+                if let queryss = querySnapshot {
+                    self.reviews = queryss.documents.compactMap { document -> Review? in
+                        try? document.data( as: Review.self )
+                    }
+                }
+            }
+
+        return self.reviews.count > 0
+    }
     func toFavorite(){
         self.isFavorite.toggle()
         if self.isFavorite {
