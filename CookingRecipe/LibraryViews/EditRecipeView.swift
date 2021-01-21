@@ -66,10 +66,9 @@ struct EditRecipeView: View {
             Button(action: {
                 print("click save")
                         if isNew{
+                            editRecipeVM.addRecipe()
                             if let media = self.mediaURL {
                             editRecipeVM.uploadMedia(mediaURL : media)
-                            } else {
-                                editRecipeVM.addRecipe()
                             }
                         } else {
                             editRecipeVM.updateRecipe()

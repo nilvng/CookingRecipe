@@ -20,34 +20,34 @@ struct UserView: View {
     @State private var signedIn = false
     @State private var email : String = ""
 
-    init() {
-        self.signedIn = auth.currentUser?.isAnonymous != true
-        print(signedIn)
-        }
-
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: true) {
-                VStack (alignment: .leading, spacing: 10){
-                    Text("Hi \(authService.user?.displayName ?? "newcomer")")
-                    Section{
-                        // if ((auth.currentUser?.isAnonymous) != nil) {
-                        if (self.signedIn) {
-                            Button(action: {
-                                do {
-                                    try Auth.auth().signOut()
-                                    self.signedIn = false
-                                } catch let signOutError as NSError {
-                                    print ("Error signing out: %@", signOutError)
-                                }
-                            }){
-                                Text("Log Out")
+                Text("Hi \(authService.user?.displayName ?? "newcomer")")
+                Section{
+                    if ((auth.currentUser?.isAnonymous) != nil) {
+                        Button(action: {
+                            do {
+                                try Auth.auth().signOut()
+                                self.signedIn = false
+                            } catch let signOutError as NSError {
+                                print ("Error signing out: %@", signOutError)
                             }
-                        } else {
-                            GoogleLogin(signedIn: $signedIn)
-                                .frame(width: 200, height: 30, alignment: .center)
+                        }){
+                            Text("Log Out")
+                                .padding(.vertical,7)
+                                .padding(.horizontal, 120)
+                                .foregroundColor(.white)
+                                .background(Color.gray)
+                                .cornerRadius(7)
+
                         }
+                    } else {
+                        GoogleLogin(signedIn: $signedIn)
+                            .frame(width: 200, height: 30, alignment: .center)
                     }
+                }
+                VStack (alignment: .leading, spacing: 10){
                     
                     FavoriteView(bookmarks: self.userVM.bookmarks)
                     

@@ -10,7 +10,6 @@ import Foundation
 
 struct RecipeDetailView: View {
     
-    @Environment(\.presentationMode) var presentationMode
     @State var startCooking = false
     @ObservedObject var recipeViewModel : RecipeViewModel
 
@@ -18,13 +17,6 @@ struct RecipeDetailView: View {
             //List{
             ScrollView(.vertical, showsIndicators: false) {
                 VStack (alignment: .leading) {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrow.backward")
-                            .imageScale(.large)
-                            .foregroundColor(.orange)
-                    }.padding(.bottom, 5).padding(.horizontal, 10)
                     Group {
                         HStack {
                             Text(recipeViewModel.recipe.title)
