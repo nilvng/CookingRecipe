@@ -9,7 +9,9 @@ import SwiftUI
 
 struct AppView: View {
   var body: some View {
-    TabView {
+    init() {
+            UITabBar.appearance().backgroundColor = UIColor.blue
+        }
       HomeView()
         .tabItem({
             Image(systemName: "house")
@@ -25,7 +27,11 @@ struct AppView: View {
                 Image(systemName: "person")
               Text("Library")
             })
-
+        ChallengeView()
+            .tabItem ({
+                Image(systemName: "burst.fill")
+                Text("Challenge")
+            })
     }
     .edgesIgnoringSafeArea(.all)
     .accentColor(Color.primary)
