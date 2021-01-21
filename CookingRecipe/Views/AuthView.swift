@@ -9,46 +9,6 @@ import SwiftUI
 import Firebase
 import Resolver
 import GoogleSignIn
-struct AuthView: View {
-    @Injected var authService : AuthenticationService
-    var auth = Auth.auth()
-    @State private var signedIn = false
-    @State private var email : String = ""
-    var body: some View {
-        //ZStack {
-        VStack(spacing: 4) {
-            Text("Name : \(authService.user?.displayName ?? "")")
-            AppView()
-            Section{
-                if ((auth.currentUser?.isAnonymous) != nil) {
-                    Button(action: {
-                        do {
-                            try Auth.auth().signOut()
-                            self.signedIn = false
-                        } catch let signOutError as NSError {
-                            print ("Error signing out: %@", signOutError)
-                        }
-                    }){
-                        Text("Log Out")
-                    }
-                }else {
-                    GoogleLogin(signedIn: $signedIn)
-                        .frame(width: 200, height: 30, alignment: .center)
-                }
-            }
-        .edgesIgnoringSafeArea(.all)
-        .onReceive(authService.$user){ user in
-            self.email = user?.email ?? ""
-        }
-    }
-}
-}
-
-struct AuthtView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthView()
-    }
-}
 
 struct GoogleLogin: UIViewRepresentable {
     @Binding
@@ -83,7 +43,6 @@ struct GoogleLogin: UIViewRepresentable {
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                            accessToken: authentication.accessToken)
             let  currentUser = Auth.auth().currentUser
-            print("username in google: \(user?.profile.name)")
             if currentUser != nil && currentUser?.isAnonymous == false {
                 print("about to link...")
                 currentUser?.link(with: credential) { (authResult, error) in

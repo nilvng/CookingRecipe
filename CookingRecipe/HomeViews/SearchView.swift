@@ -10,7 +10,8 @@ import SwiftUI
 struct SearchView: View {
     
     @ObservedObject var searchVM = SearchViewModel()
-    
+    @Environment(\.presentationMode) var presentationMode
+
     @State var showSearchField = false
     @State var text : String = ""
     
@@ -19,11 +20,17 @@ struct SearchView: View {
             
             VStack (spacing: 0){
                 HStack {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "arrow.backward")
+                            .imageScale(.large)
+                    }.padding(.bottom, 5)
+
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
                             .padding(6)
-                            .background(Color.white)
                             .cornerRadius(20)
 
                         TextField("Search...", text: self.$text, onCommit: {
@@ -36,13 +43,13 @@ struct SearchView: View {
                         }
                     }
                     .padding(5)
-                    .background(Color.white)
+                    .background(Color(UIColor(red: 218, green: 223, blue: 232)))
                     .cornerRadius(20)
                 }
                 .padding(.top, geo.safeAreaInsets.top + 35)
                 .padding(.horizontal)
                 .padding(.bottom, 10)
-                .background(Color.red)
+                .background(Color.white)
                 
                 if searchVM.recipeViewModels.count == 0{
                     Text("No result")
@@ -59,6 +66,7 @@ struct SearchView: View {
 struct CustomNavView : View {
     var padValue : CGFloat = 0
     var searchVM : SearchViewModel
+    
     @State var showSearchField = false
     @State var text : String = ""
 
@@ -69,7 +77,7 @@ struct CustomNavView : View {
                 Text("Cookie")
                     .fontWeight(.bold)
                     .font(.title)
-                    .foregroundColor(.white)
+                    .foregroundColor(.orange)
             }
 
             Spacer(minLength: 0)
@@ -88,7 +96,7 @@ struct CustomNavView : View {
                             self.showSearchField.toggle()
                     }
                     }){
-                        Image(systemName: "xmark").foregroundColor(.black)
+                        Image(systemName: "xmark").foregroundColor(.orange)
                     }
                 } else {
                     Button(action: {
@@ -107,13 +115,13 @@ struct CustomNavView : View {
                 }
             }
             .padding(self.showSearchField ? 10 : 0)
-            .background(Color.white)
+            .background(Color.gray)
             .cornerRadius(20)
         }
         .padding(.top, self.padValue + 30)
         .padding(.horizontal)
         .padding(.bottom, 10)
-        .background(Color.red)
+        .background(Color.white)
     }
 }
 

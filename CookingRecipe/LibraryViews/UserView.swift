@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Combine
-import FirebaseFirestore
+import Firebase
 import FirebaseFirestoreSwift
 import Resolver
 
@@ -15,10 +15,40 @@ struct UserView: View {
     @ObservedObject var userVM  = UserViewModel()
     @State var show : Bool = false
     @State var editVM = EditRecipeViewModel.newRecipe()
+    @Injected var authService : AuthenticationService
+    var auth = Auth.auth()
+    @State private var signedIn = false
+    @State private var email : String = ""
+
+    init() {
+        self.signedIn = auth.currentUser?.isAnonymous != true
+        print(signedIn)
+        }
+
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: true) {
                 VStack (alignment: .leading, spacing: 10){
+                    Text("Hi \(authService.user?.displayName ?? "newcomer")")
+                    Section{
+                        // if ((auth.currentUser?.isAnonymous) != nil) {
+                        if (self.signedIn) {
+                            Button(action: {
+                                do {
+                                    try Auth.auth().signOut()
+                                    self.signedIn = false
+                                } catch let signOutError as NSError {
+                                    print ("Error signing out: %@", signOutError)
+                                }
+                            }){
+                                Text("Log Out")
+                            }
+                        } else {
+                            GoogleLogin(signedIn: $signedIn)
+                                .frame(width: 200, height: 30, alignment: .center)
+                        }
+                    }
+                    
                     FavoriteView(bookmarks: self.userVM.bookmarks)
                     
                     VStack {

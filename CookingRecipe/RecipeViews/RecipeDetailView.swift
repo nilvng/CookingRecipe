@@ -23,6 +23,7 @@ struct RecipeDetailView: View {
                     }) {
                         Image(systemName: "arrow.backward")
                             .imageScale(.large)
+                            .foregroundColor(.orange)
                     }.padding(.bottom, 5).padding(.horizontal, 10)
                     Group {
                         HStack {
@@ -124,7 +125,14 @@ struct DirectionsList: View {
             }
     }
 }
-
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title)
+            .foregroundColor(.orange)
+            .padding()
+    }
+}
 struct RecipeDetail_Previews: PreviewProvider {
     static var previews: some View {
         RecipeDetailView(recipeViewModel: RecipeViewModel(recipe: recipesData[0]))    }

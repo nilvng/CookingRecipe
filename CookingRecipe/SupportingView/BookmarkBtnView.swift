@@ -22,7 +22,7 @@ struct BookmarkBtnView: View {
                     Image(systemName: "heart")
                 }
             }
-            .foregroundColor(.pink)
+            .foregroundColor(.orange)
             .imageScale(.large)
         }
     }
