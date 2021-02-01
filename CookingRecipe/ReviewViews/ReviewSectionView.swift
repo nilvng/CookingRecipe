@@ -22,17 +22,13 @@ struct ReviewSectionView : View {
         } else{
             ReviewEditorView(reviewVM: reviewVM,review: Review(), isNew : true)
         }
-        //            TabView(selection: $index){
-        //            ScrollView(.horizontal, showsIndicators: false) {
-        //                HStack (alignment: .top, spacing: 0){
+
         Divider()
         
         ForEach(reviewVM.reviews){ review in
             ReviewCard(review: review)
             Divider()
         }
-        //                }
-        //            }
     }
 }
 

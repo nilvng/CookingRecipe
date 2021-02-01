@@ -25,7 +25,7 @@ struct UserView: View {
             ScrollView(.vertical, showsIndicators: true) {
                 Text("Hi \(authService.user?.displayName ?? "newcomer")")
                 Section{
-                    if ((auth.currentUser?.isAnonymous) != nil) {
+                    if ( authService.user?.email  != nil) {
                         Button(action: {
                             do {
                                 try Auth.auth().signOut()
@@ -118,6 +118,7 @@ struct FavoriteView : View {
                                 .frame(width: 100, height: 100, alignment: .center)
                         }
                         Text(recipeP.title)
+                            .lineLimit(1)
 
                     }
                 }

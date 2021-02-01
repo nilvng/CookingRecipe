@@ -26,16 +26,21 @@ protocol RecipeRepository : BaseRecipeRepository{
 class FirebaseRecipeRepository: BaseRecipeRepository, RecipeRepository, ObservableObject {
     
     var recipePath : String = "Recipe"
-    var userId = ""
+    @Published var userId = ""
     private var db = Firestore.firestore()
     private let storage = Storage.storage().reference()
     @Injected var authService : AuthenticationService
     private var cancellables = Set<AnyCancellable>()
 
     func loadData(){
+        guard (authService.user?.email != nil && userId != "") else {
+            recipes = []
+            print("NO auth")
+            return
+        }
         db.collection(recipePath)
               .whereField("ownerId", isEqualTo: self.userId) // (9)
-              .addSnapshotListener { (querySnapshot, error) in
+              .getDocuments() { (querySnapshot, error) in
                 if let querySnapshot = querySnapshot {
                   self.recipes = querySnapshot.documents.compactMap { document -> Recipe? in
                     try? document.data(as: Recipe.self)
@@ -48,11 +53,12 @@ class FirebaseRecipeRepository: BaseRecipeRepository, RecipeRepository, Observab
         var recipe1 = recipe
         recipe1.ownerId = self.userId
         do {
-          let _ = try db.collection(recipePath).addDocument(from: recipe)
+          let _ = try db.collection(recipePath).addDocument(from: recipe1)
         }
         catch {
           print("There was an error while trying to save a task \(error.localizedDescription).")
         }
+        loadData()
       }
     
     func deleteRecipe(_ recipe: Recipe) {
@@ -63,6 +69,7 @@ class FirebaseRecipeRepository: BaseRecipeRepository, RecipeRepository, Observab
             }
           }
         }
+        loadData()
     }
     
     func updateRecipe(_ recipe: Recipe) {
@@ -76,6 +83,7 @@ class FirebaseRecipeRepository: BaseRecipeRepository, RecipeRepository, Observab
                 print("There was an error while trying to save a task \(error.localizedDescription).")
             }
         }
+        loadData()
       }
     
     func uploadMedia(mediaURL : URL?, recipe: Recipe){
