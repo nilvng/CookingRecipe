@@ -1,6 +1,6 @@
 # CookingRecipe
 An IOS app built for the Building IT System course
-![Recipe%20iOS%20App%203135cdac20774e45a9b1c9e045967861/Screen_Shot_2021-01-24_at_15.13.59.png](Recipe%20iOS%20App%203135cdac20774e45a9b1c9e045967861/Screen_Shot_2021-01-24_at_15.13.59.png)
+![home_screen](./screen1.png)
 ## What I've learnt
 
 - Familiar with data driven programming in iOS development
