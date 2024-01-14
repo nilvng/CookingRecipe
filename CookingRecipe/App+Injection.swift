@@ -8,11 +8,11 @@
 import Foundation
 import Resolver
 
-extension Resolver : ResolverRegistering {
+extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
-        register { AuthenticationService() }.scope(application)
-        register { FirebaseRecipeRepository() as RecipeRepository}.scope(application)
-        register { FirebaseBookmarkRepository() as BookmarkRepository}.scope(application)
+        register { AuthenticationService() }
+        register { FirebaseRecipeRepository() as RecipeRepository}
+        register { FirebaseBookmarkRepository() as BookmarkRepository}
 
     }
 }
