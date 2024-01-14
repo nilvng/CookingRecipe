@@ -78,7 +78,6 @@
 		874B77215FC8CACA0946E109 /* Pods-CookingRecipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CookingRecipe.debug.xcconfig"; path = "Target Support Files/Pods-CookingRecipe/Pods-CookingRecipe.debug.xcconfig"; sourceTree = "<group>"; };
 		9F01721B17B84A9DE6B4C7BB /* Pods_CookingRecipe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CookingRecipe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5EA17C82B53793400393674 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C80B67AC257E649C0065317B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "/Users/mac/Downloads/GoogleService-Info.plist"; sourceTree = "<absolute>"; };
 		C80B67CC257F56490065317B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		C80B67D7257F6C8A0065317B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = CookingRecipe/HomeViews/SearchViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C80B67DD257FB30A0065317B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -212,14 +211,12 @@
 				C8838B6C25B084FE00B6D70C /* HomeViews */,
 				C8648AA4256B91DB002EC8F2 /* Models */,
 				C879F67B257BD92B0007C5B7 /* Repositories */,
-				C879F67A257BD91F0007C5B7 /* ViewModels */,
 				C879F679257BD90B0007C5B7 /* Views */,
 				C8648AA3256B9197002EC8F2 /* SupportingView */,
 				C827066C2567F715001D5420 /* CookingRecipeApp.swift */,
 				C827066E2567F715001D5420 /* ContentView.swift */,
 				C82706702567F716001D5420 /* Assets.xcassets */,
 				C82706752567F716001D5420 /* Info.plist */,
-				C80B67AC257E649C0065317B /* GoogleService-Info.plist */,
 				C82706722567F716001D5420 /* Preview Content */,
 			);
 			path = CookingRecipe;
@@ -276,13 +273,6 @@
 				C816DD47258DDC6B00D3E939 /* AuthView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C879F67A257BD91F0007C5B7 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		C879F67B257BD92B0007C5B7 /* Repositories */ = {
